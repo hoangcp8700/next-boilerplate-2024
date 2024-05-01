@@ -1,14 +1,15 @@
 import axiosClient, { AxiosError, AxiosResponse } from 'axios';
 
 import { getAccessToken } from '@/shares/utils/storage';
-import { env } from '@/shares/constants/env';
+
+import { Env } from '../shares/constants/env';
 
 // version: 0.27.2
 /**
  * Creates an initial 'axios' instance with custom settings.
  */
 const axiosInstance = axiosClient.create({
-  baseURL: env.NEXT_API_BASE_URL || '',
+  baseURL: Env.NEXT_API_BASE_URL || '',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json; charset=utf-8',

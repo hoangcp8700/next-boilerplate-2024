@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+import withNextIntl from 'next-intl/plugin';
+
+const withNextIntlConfig = withNextIntl('./src/libs/i18n.ts');
+
+const nextConfig = withNextIntlConfig({
   eslint: {
     dirs: ['src'],
   },
@@ -23,6 +27,6 @@ const nextConfig = {
 
     return config;
   },
-};
+});
 
 export default nextConfig;

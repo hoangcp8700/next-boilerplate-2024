@@ -1,0 +1,51 @@
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+
+  .link-neutral {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      @apply text-inherit no-underline;
+    }
+  }
+
+  .link-primary {
+    &:link {
+      @apply text-blue-600;
+    }
+    &:visited {
+      @apply text-purple-600;
+    }
+    &:hover {
+      @apply cursor-pointer text-blue-800;
+    }
+    &:active {
+      @apply text-red-600;
+    }
+  }
+
+  .adjust-flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reset-input {
+    outline: none;
+    appearance: none;
+  }
+
+  .svg-white {
+    filter: brightness(0) invert(1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -1,12 +1,12 @@
+import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 
-import { Env } from '@/shares/constants/env';
+export default function Home({ params: { locale } }: PageModuleType) {
+  unstable_setRequestLocale(locale);
 
-export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        {Env.NEXT_API_BASE_URL}
         <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl lg:static lg:w-auto lg:rounded-xl lg:border lg:bg-gray-200  lg:p-4 dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:dark:bg-zinc-800/30">
           Get started by editing&nbsp;
           <code className="font-mono font-bold">src/app/page.tsx</code>
@@ -113,4 +113,16 @@ export default function Home() {
       </div>
     </main>
   );
+}
+
+export async function generateMetadata(props: { params: { locale: string } }) {
+  const t = await getTranslations({
+    locale: props.params.locale,
+    namespace: 'pages.Home',
+  });
+
+  return {
+    title: t('meta_title'),
+    description: t('meta_description'),
+  };
 }

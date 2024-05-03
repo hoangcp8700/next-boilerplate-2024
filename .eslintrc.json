@@ -1,7 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": 2021,
+    "ecmaVersion": 2023,
     "sourceType": "module",
     "project": "./tsconfig.json",
     "ecmaFeatures": {
@@ -10,7 +10,7 @@
   },
   "env": {
     "browser": true,
-    "es2021": true,
+    "es2023": true,
     "node": true
   },
   "root": true,
@@ -26,31 +26,11 @@
   ],
   "plugins": ["prettier", "@typescript-eslint", "react", "react-hooks"],
   "rules": {
-    // JavaScript rules
-    "prefer-const": "warn",
+    "prettier/prettier": "error",
     "no-var": "error",
-    "no-unused-vars": "error",
-    "object-shorthand": "warn",
-    "quote-props": ["warn", "as-needed"],
-    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warn", // Checks effect dependencies
-    "react/react-in-jsx-scope": "off",
-    "react/prop-types": "off",
-    "prettier/prettier": "warn",
-    "react-hooks/rules-of-hooks": "error",
-    "react/react-in-jsx-scope": 0,
-    "react/display-name": 0,
-    "react/prop-types": 0,
-    "no-console": "error",
+    "no-shadow": "error",
 
-    // React rules
-    "react/jsx-fragments": ["warn", "syntax"], // Shorthand syntax for React fragments
-    "react/jsx-filename-extension": [
-      "warn",
-      {
-        "extensions": ["ts", "tsx"]
-      }
-    ],
+    "react/react-in-jsx-scope": "off",
 
     "import/extensions": [
       "error",
@@ -79,29 +59,23 @@
     ],
 
     // TypeScript rules
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/array-type": [
       "warn",
       {
         "default": "array"
       }
     ],
-    "@typescript-eslint/consistent-type-assertions": [
-      "warn",
+
+    "@typescript-eslint/no-unused-vars": [
+      "error",
       {
-        "assertionStyle": "as",
-        "objectLiteralTypeAssertions": "never"
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_",
+        "caughtErrorsIgnorePattern": "^_"
       }
     ],
-
-    "@typescript-eslint/explicit-function-return-type": 0,
-    "@typescript-eslint/explicit-member-accessibility": 0,
-    "@typescript-eslint/indent": 0,
-    "@typescript-eslint/member-delimiter-style": 0,
-    "@typescript-eslint/no-explicit-any": 0,
-    "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/no-use-before-define": 0,
-    "@typescript-eslint/no-unused-vars": "warn",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-shadow": "warn"
   },
   "settings": {
     "import/parsers": {

@@ -4,3 +4,11 @@ export const DEFAULT_QUERY_OPTION = {
   refetchOnWindowFocus: false,
   refetchOnReconnect: false,
 };
+
+export const locales: string[] = ['en', 'vi'];
+
+export const AppConfigs = {
+  name: 'Nextjs Boilerplate',
+  locales,
+  defaultLocale: 'en',
+};

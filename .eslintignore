@@ -9,3 +9,5 @@ next.config.mjs
 yarn.lock
 tailwind.config.js
 postcss.config.mjs
+hygen.js
+_templates

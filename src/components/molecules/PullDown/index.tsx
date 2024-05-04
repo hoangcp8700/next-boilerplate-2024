@@ -1,8 +1,13 @@
+'use client';
+
 import React from 'react';
-// import styles from "./pullDown.module.css";
 
-export interface PullDownProps {}
+export interface PullDownProps {
+  children: React.ReactNode;
+}
 
-const PullDown: React.FC<PullDownProps> = () => <div>Component PullDown</div>;
+const PullDown = ({ children }: PullDownProps) => (
+  <div>Component PullDown {children}</div>
+);
 
 export default PullDown;

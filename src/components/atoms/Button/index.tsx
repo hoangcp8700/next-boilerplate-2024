@@ -1,11 +1,12 @@
+'use client';
+
 import React from 'react';
-// import styles from "./button.module.css";
 
 export interface ButtonProps {
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({ children }) => (
+const Button = ({ children }: ButtonProps) => (
   <div>Component Button {children}</div>
 );
 

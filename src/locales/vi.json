@@ -14,12 +14,12 @@
       "meta_description": "[VN] Next.js 14 führt erweiterte Internationalisierungs (i18n)-Funktionen ein, die Entwicklern ermöglichen, Übersetzungen, lokalisierungsbasiertes"
     },
     "News": {
-      "meta_title": "[VN] News",
-      "meta_description": "[VN] Welcome to my portfolio page!"
+      "meta_title": "[VN] News TITLE",
+      "meta_description": "[VN] News Welcome to my portfolio page!"
     },
     "About": {
-      "meta_title": "[VN] About",
-      "meta_description": "[VN] Welcome to my portfolio page!"
+      "meta_title": "[VN] About TITLE",
+      "meta_description": "[VN] About Welcome to my portfolio page!"
     }
   },
   "common": {

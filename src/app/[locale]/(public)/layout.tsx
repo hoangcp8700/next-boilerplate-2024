@@ -1,4 +1,4 @@
-import LocaleSwitcher from '@/components/organisms/LocalSwithcher';
+import LocaleSwitcher from '@/components/organisms/LocaleSwitcher';
 import { BaseTemplate } from '@/layouts/BaseLayout';
 import { Link, useTranslations } from '@/libs/i18nNavigation';
 
@@ -15,6 +15,14 @@ export default function Layout(props: { children: React.ReactNode }) {
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('home_link')}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/test/"
+              className="border-none text-gray-700 hover:text-gray-900"
+            >
+              {t('about_link')}_test
             </Link>
           </li>
           <li>

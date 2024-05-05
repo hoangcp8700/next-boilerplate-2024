@@ -8,7 +8,7 @@ import { Env } from '../shares/constants/env';
 /**
  * Creates an initial 'axios' instance with custom settings.
  */
-const axiosInstance = axiosClient.create({
+const axios = axiosClient.create({
   baseURL: Env.NEXT_API_BASE_URL || '',
   headers: {
     Accept: 'application/json',
@@ -16,7 +16,7 @@ const axiosInstance = axiosClient.create({
   },
 });
 
-axiosInstance.interceptors.request.use(
+axios.interceptors.request.use(
   ($config) => {
     if ($config.headers) {
       const token = getAccessToken();
@@ -29,7 +29,7 @@ axiosInstance.interceptors.request.use(
   async (error: AxiosError): Promise<AxiosError> => Promise.reject(error),
 );
 
-axiosInstance.interceptors.response.use(
+axios.interceptors.response.use(
   (response: AxiosResponse): AxiosResponse => response,
   async (error: AxiosError): Promise<AxiosError> =>
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,4 +38,4 @@ axiosInstance.interceptors.response.use(
     ),
 );
 
-export default axiosInstance;
+export default axios;

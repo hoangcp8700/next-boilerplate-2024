@@ -1,10 +1,12 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-export default function UserProfile({ params: { locale } }: PageModuleType) {
+export default function Profile({
+  params: { locale },
+}: PageParamsModuleType<any>) {
   unstable_setRequestLocale(locale);
 
-  const t = useTranslations('pages.UserProfile');
+  const t = useTranslations('pages.Profile');
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -17,7 +19,7 @@ export default function UserProfile({ params: { locale } }: PageModuleType) {
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
-    namespace: 'pages.UserProfile',
+    namespace: 'pages.Profile',
   });
 
   return {

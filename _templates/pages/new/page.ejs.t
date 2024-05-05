@@ -4,7 +4,7 @@ to: src/app/[locale]/(<%= structure %>)/<%= h.changeCase.kebabCase(name) %>/page
 import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-export default function <%= h.changeCase.pascalCase(name) %>({ params: { locale } }: PageModuleType) {
+export default function <%= h.changeCase.pascalCase(name) %>({ params: { locale } }: PageParamsModuleType) {
   unstable_setRequestLocale(locale);
 
   const t = useTranslations('pages.<%= h.changeCase.pascalCase(name) %>');

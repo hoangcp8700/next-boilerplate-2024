@@ -1,12 +1,20 @@
 import { createSharedPathnamesNavigation } from 'next-intl/navigation';
 import { useTranslations as useTranslationsApp } from 'next-intl';
+import { ComponentProps } from 'react';
 
 import { AppConfigs } from '@/shares/constants';
 
-export const { Link, usePathname, useRouter, redirect, permanentRedirect } =
-  createSharedPathnamesNavigation({
-    locales: AppConfigs.locales,
-    localePrefix: 'as-needed',
-  });
+export const {
+  Link: LinkI18n,
+  usePathname,
+  useRouter,
+  redirect,
+  permanentRedirect,
+} = createSharedPathnamesNavigation({
+  locales: AppConfigs.locales,
+  localePrefix: 'as-needed',
+});
+
+export type LinkI18nInterface = ComponentProps<typeof LinkI18n>;
 
 export const useTranslations = useTranslationsApp;

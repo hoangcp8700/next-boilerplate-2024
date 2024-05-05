@@ -1,6 +1,7 @@
+import Link from '@/components/atoms/Link';
 import LocaleSwitcher from '@/components/organisms/LocaleSwitcher';
 import { BaseTemplate } from '@/layouts/BaseLayout';
-import { Link, useTranslations } from '@/libs/i18nNavigation';
+import { useTranslations } from '@/libs/i18nNavigation';
 
 export default function Layout(props: { children: React.ReactNode }) {
   const t = useTranslations('navigate');

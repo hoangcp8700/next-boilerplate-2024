@@ -1,6 +1,6 @@
 'use client';
 
-import { Link } from '@/libs/i18nNavigation';
+import Link from '@/components/atoms/Link';
 
 export default function NotFound() {
   return (

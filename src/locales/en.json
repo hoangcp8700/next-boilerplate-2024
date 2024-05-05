@@ -2,7 +2,7 @@
   "navigate": {
     "home_link": "Home",
     "about_link": "About",
-    "news_link": "News",
+    "posts_link": "Posts",
     "guestbook_link": "Guestbook",
     "portfolio_link": "Portfolio",
     "sign_in_link": "Sign in",
@@ -13,9 +13,9 @@
       "meta_title": "Internationalisierung (i18n) in Next.js 14",
       "meta_description": "Next.js 14 führt erweiterte Internationalisierungs (i18n)-Funktionen ein, die Entwicklern ermöglichen, Übersetzungen, lokalisierungsbasiertes"
     },
-    "News": {
-      "meta_title": "News TITLE",
-      "meta_description": "News TITLE Welcome to my portfolio page!"
+    "Post": {
+      "meta_title": "Post TITLE",
+      "meta_description": "Post TITLE Welcome to my portfolio page!"
     },
     "About": {
       "meta_title": "About TITLE",

@@ -5,6 +5,9 @@ const defaultQueryOption = {
   refetchOnMount: true,
   refetchOnWindowFocus: false,
   refetchOnReconnect: false,
+  // With SSR, we usually want to set some default staleTime
+  // above 0 to avoid refetching immediately on the client
+  staleTime: 60 * 1000,
 };
 
 const locales = ['en', 'vi'] as const;

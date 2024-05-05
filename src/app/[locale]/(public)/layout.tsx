@@ -36,10 +36,10 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/news/"
+              href="/posts/"
               className="border-none text-gray-700 hover:text-gray-900"
             >
-              {t('news_link')}
+              {t('posts_link')}
             </Link>
           </li>
 

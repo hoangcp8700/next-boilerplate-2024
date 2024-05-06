@@ -29,7 +29,7 @@
     "prettier/prettier": "error",
     "no-var": "error",
     "no-shadow": "error",
-
+    "react/prop-types": "off",
     "react/react-in-jsx-scope": "off",
 
     "import/extensions": [

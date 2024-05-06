@@ -3,7 +3,7 @@ import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
 export default function UserProfile({
   params: { locale },
-}: PageParamsModuleType<any>) {
+}: PageParamsModuleType) {
   unstable_setRequestLocale(locale);
 
   const t = useTranslations('pages.UserProfile');

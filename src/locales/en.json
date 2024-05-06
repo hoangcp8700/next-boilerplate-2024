@@ -20,6 +20,10 @@
     "About": {
       "meta_title": "About TITLE",
       "meta_description": "About TITLE Welcome to my portfolio page!"
+    },
+    "UserProfile": {
+      "meta_title": "UserProfile TITLE",
+      "meta_description": "UserProfile TITLE Welcome to my portfolio page!"
     }
   },
   "common": {

@@ -20,6 +20,10 @@
     "About": {
       "meta_title": "[VN] About TITLE",
       "meta_description": "[VN] About Welcome to my portfolio page!"
+    },
+    "UserProfile": {
+      "meta_title": "[VN] UserProfile TITLE",
+      "meta_description": "[VN] UserProfile TITLE Welcome to my portfolio page!"
     }
   },
   "common": {

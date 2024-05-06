@@ -1,10 +1,10 @@
 type PageParamsType = {
   locale: string;
+  id: string;
 };
 
-type PageParamsModuleType<T> = {
+type PageParamsModuleType = {
   params: PageParamsType;
-  data?: T;
 };
 
 type ProviderType = {

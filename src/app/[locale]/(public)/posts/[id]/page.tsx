@@ -7,30 +7,32 @@ import {
 
 import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
-import { PostsView } from '@/modules/Posts';
+import { PostDetailView } from '@/modules/Posts/detail';
 
-export default async function Posts({
-  params: { locale },
+export default async function PostDetail({
+  params: { locale, id },
 }: PageParamsModuleType) {
   unstable_setRequestLocale(locale);
 
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
-    queryKey: [queryKeys.posts],
-    queryFn: () => api.getPostList(),
-  });
+  if (id) {
+    await queryClient.prefetchQuery({
+      queryKey: [queryKeys.posts, id],
+      queryFn: () => api.getPostDetail(id),
+    });
+  }
 
   return (
     // Neat! Serialization is now as easy as passing props.
     // HydrationBoundary is a Client Component, so hydration will happen there.
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostsView />
+      <PostDetailView id={id} />
     </HydrationBoundary>
   );
 }
 
-export async function generateMetadata(props: { params: { locale: string } }) {
+export async function generateMetadata(props: { params: PageParamsType }) {
   const t = await getTranslations({
     locale: props.params.locale,
     namespace: 'pages.Post',

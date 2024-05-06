@@ -1,9 +1,7 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-export default function About({
-  params: { locale },
-}: PageParamsModuleType<any>) {
+export default function About({ params: { locale } }: PageParamsModuleType) {
   unstable_setRequestLocale(locale);
 
   const t = useTranslations('pages.About');

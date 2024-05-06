@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
 
-export const useGetPostListApi = (posts?: any) => {
+export const useGetPostListApi = () => {
   // Note that we are using useQuery here instead of useSuspenseQuery.
   // Because this data has already been prefetched, there is no need to
   // ever suspend in the component itself. If we forget or remove the
@@ -13,6 +13,5 @@ export const useGetPostListApi = (posts?: any) => {
   return useQuery({
     queryKey: [queryKeys.posts],
     queryFn: () => api.getPostList(),
-    initialData: posts,
   });
 };

@@ -18,7 +18,7 @@ export interface PostType {
 }
 
 // services
-export const getPostDetail = async (id: string) => {
+export const getPostDetail = async (id: string): Promise<PostType> => {
   const response = await fetch(`${Env.NEXT_API_BASE_URL}/posts/${id}`);
   return response.json();
 };

@@ -10,6 +10,26 @@ const nextConfig = withNextIntlConfig({
   reactStrictMode: true,
   trailingSlash: true,
 
+  // Incoment to add domain whitelist
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: process.env.NEXT_PUBLIC_REMOTE_IMAGE,
+      },
+    ],
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/:locale/home',
+        destination: '/:locale',
+        permanent: true,
+      },
+    ];
+  },
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,

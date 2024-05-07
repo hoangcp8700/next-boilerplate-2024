@@ -4,6 +4,11 @@ import withNextIntl from 'next-intl/plugin';
 const withNextIntlConfig = withNextIntl('./src/libs/i18n.ts');
 
 const nextConfig = withNextIntlConfig({
+  compiler: {
+    removeConsole: {
+      exclude: ['error'],
+    },
+  },
   eslint: {
     dirs: ['src'],
   },

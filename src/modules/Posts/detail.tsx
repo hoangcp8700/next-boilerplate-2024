@@ -2,12 +2,20 @@
 
 import React from 'react';
 import { useTranslations } from 'next-intl';
+import { notFound } from 'next/navigation';
 
 import { useGetPostDetailApi } from './hooks/useGetPostDetailApi';
 
 export function PostDetailView({ id }: { id: string }) {
   const t = useTranslations('pages.Post');
-  const { data } = useGetPostDetailApi(id);
+  const { data, isLoading } = useGetPostDetailApi(id);
+
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
+  if (!data?.id) {
+    notFound();
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

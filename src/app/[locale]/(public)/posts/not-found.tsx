@@ -1,14 +1,14 @@
 'use client';
 
 import Link from '@/components/atoms/Link';
+import { RouterName } from '@/shares/constants/router';
 
-// This not found screen working when not found router
 export default function NotFound() {
   return (
     <div>
-      <h2>Not Found</h2>
+      <h2>Not Found This Post</h2>
       <p>Could not find requested resource</p>
-      <Link href="/">Return Home</Link>
+      <Link href={RouterName.posts}>Return Posts</Link>
     </div>
   );
 }

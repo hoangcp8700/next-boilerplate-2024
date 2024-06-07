@@ -9,6 +9,7 @@ import { Suspense } from 'react';
 import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
 import { PostsView } from '@/modules/Posts';
+import { Env } from '@/shares/constants/env';
 
 export default async function Posts({
   params: { locale },
@@ -43,5 +44,13 @@ export async function generateMetadata(props: { params: { locale: string } }) {
   return {
     title: t('meta_title'),
     description: t('meta_description'),
+    openGraph: {
+      type: 'website',
+      title: t('meta_title'),
+      description: t('meta_description'),
+      images: ['https://cdn3.ivivu.com/2023/10/du-lich-sai-gon-ivivu1.jpg'], // REPLACE
+      siteName: 'POST  LIST',
+      url: `${Env.NEXT_PUBLIC_DOMAIN}/posts`,
+    },
   };
 }

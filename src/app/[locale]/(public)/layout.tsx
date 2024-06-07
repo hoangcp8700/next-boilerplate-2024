@@ -1,5 +1,4 @@
-import Link from '@/components/atoms/Link';
-import LocaleSwitcher from '@/components/organisms/LocaleSwitcher';
+import { Link, LocaleSwitcher } from '@/components';
 import { BaseTemplate } from '@/layouts/BaseLayout';
 import { useTranslations } from '@/libs/i18nNavigation';
 

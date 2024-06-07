@@ -4,6 +4,7 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
+import { Suspense } from 'react';
 
 import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
@@ -25,7 +26,10 @@ export default async function Posts({
     // Neat! Serialization is now as easy as passing props.
     // HydrationBoundary is a Client Component, so hydration will happen there.
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <PostsView />
+      {/* NOTE: Wrapper Suspense components because use router client */}
+      <Suspense>
+        <PostsView />
+      </Suspense>
     </HydrationBoundary>
   );
 }

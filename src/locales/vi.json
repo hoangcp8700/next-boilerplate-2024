@@ -32,6 +32,7 @@
     }
   },
   "messages": {
-    "todo": "[VN] Todo"
+    "todo": "[VN] Todo",
+    "no_data": "[VN] No Data"
   }
 }

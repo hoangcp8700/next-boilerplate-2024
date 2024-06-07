@@ -1,5 +1,3 @@
-import { Env } from '@/shares/constants/env';
-
 import { urlRequest } from './helpers';
 
 // types
@@ -21,17 +19,13 @@ export interface PostType {
 
 // services
 export const getPostDetail = async (id: string): Promise<PostType> => {
-  const response = await fetch(
-    urlRequest(`${Env.NEXT_API_BASE_URL}/posts/${id}`),
-  );
+  const response = await fetch(urlRequest(`/posts/${id}`));
   return response.json();
 };
 
 export const getPostList = async (
   params?: PaginationParamsType,
 ): Promise<PostPaginateType> => {
-  const response = await fetch(
-    urlRequest(`${Env.NEXT_API_BASE_URL}/posts`, params),
-  );
+  const response = await fetch(urlRequest('/posts', params));
   return response.json();
 };

@@ -9,7 +9,7 @@ import { Env } from '../shares/constants/env';
  * Creates an initial 'axios' instance with custom settings.
  */
 const axios = axiosClient.create({
-  baseURL: Env.NEXT_API_BASE_URL || '',
+  baseURL: Env.NEXT_PUBLIC_API_BASE_URL || '',
   headers: {
     Accept: 'application/json',
     'Content-Type': 'application/json; charset=utf-8',

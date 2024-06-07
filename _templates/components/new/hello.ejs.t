@@ -7,8 +7,6 @@ export interface <%= h.changeCase.pascalCase(name) %>Props {
   children?: React.ReactNode;
 }
 
-const <%= h.changeCase.pascalCase(name) %> = ({ children }: <%= h.changeCase.pascalCase(name) %>Props) => (
+export const <%= h.changeCase.pascalCase(name) %> = ({ children }: <%= h.changeCase.pascalCase(name) %>Props) => (
   <div>Component <%= h.changeCase.pascalCase(name) %> {children}</div>
 );
-
-export default <%= h.changeCase.pascalCase(name) %>;

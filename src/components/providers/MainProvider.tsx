@@ -1,4 +1,4 @@
-import ProgressBar from '../molecules/ProgressBar';
+import { ProgressBar } from '../molecules';
 
 import { NextIntlProvider } from './NextIntlProvider';
 import { ReactQueryClientProvider } from './ReactQueryClientProvider';

@@ -6,7 +6,7 @@ import type { ChangeEventHandler } from 'react';
 import { usePathname, useRouter } from '@/libs/i18nNavigation';
 import { AppConfigs } from '@/shares/constants';
 
-export default function LocaleSwitcher() {
+export const LocaleSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
@@ -29,4 +29,4 @@ export default function LocaleSwitcher() {
       ))}
     </select>
   );
-}
+};

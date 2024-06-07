@@ -2,9 +2,9 @@
 
 import * as yup from 'yup';
 
-import Input from '@/components/atoms/Input';
+import { Input } from '@/components/atoms';
 
-import Form from '.';
+import { Form } from '.';
 
 const schema = yup.object().shape({
   test: yup.string().required(),

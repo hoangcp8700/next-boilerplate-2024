@@ -124,10 +124,8 @@ const FormRef: WithForwardRefType<FieldValues> = forwardRef<
   },
 ) as WithForwardRefType<FieldValues>;
 
-const Form = withProperties(FormRef, {
+export const Form = withProperties(FormRef, {
   Field,
   SubmitButton,
   // HelperText: FormHelperText,
 });
-
-export default Form;

@@ -1,6 +1,8 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
+import { Container } from '@/components';
+
 export default function UserProfile({
   params: { locale },
 }: PageParamsModuleType) {
@@ -8,11 +10,11 @@ export default function UserProfile({
 
   const t = useTranslations('pages.UserProfile');
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <Container className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         {t('meta_title')}
       </div>
-    </main>
+    </Container>
   );
 }
 

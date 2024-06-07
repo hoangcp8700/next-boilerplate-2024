@@ -7,7 +7,7 @@ export interface ImageProps extends NextImageProps {
   children?: React.ReactNode;
 }
 
-const Image = ({ src, width, height, ...props }: ImageProps) => (
+export const Image = ({ src, width, height, ...props }: ImageProps) => (
   <NextImage
     placeholder="blur"
     width={width}
@@ -20,5 +20,3 @@ const Image = ({ src, width, height, ...props }: ImageProps) => (
     {...props}
   />
 );
-
-export default Image;

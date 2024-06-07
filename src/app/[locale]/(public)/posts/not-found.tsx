@@ -1,6 +1,6 @@
 'use client';
 
-import Link from '@/components/atoms/Link';
+import { Link } from '@/components';
 import { RouterName } from '@/shares/constants/router';
 
 export default function NotFound() {

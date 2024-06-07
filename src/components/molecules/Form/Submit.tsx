@@ -1,7 +1,7 @@
 import { ElementType, ComponentProps } from 'react';
 import { useFormContext, useFormState } from 'react-hook-form';
 
-import Button from '@/components/atoms/Button';
+import { Button } from '@/components/atoms';
 
 type SubmitButtonProps<T extends ElementType> = ComponentProps<T> & {
   as: T;

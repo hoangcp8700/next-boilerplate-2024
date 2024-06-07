@@ -28,4 +28,5 @@ type PaginationParamsType = {
   size?: number;
   search?: string;
   limit?: number;
+  skip?: number;
 };

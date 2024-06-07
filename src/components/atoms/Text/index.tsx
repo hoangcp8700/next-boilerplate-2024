@@ -1,7 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
-
 interface TextProps {
   type?: 'p' | 'span' | 'div';
   content?: string;
@@ -18,12 +16,10 @@ export const Text = ({
 
   return content ? (
     <Element
-      className={clsx('duration-300 ease-in-out', className)}
+      className={className}
       dangerouslySetInnerHTML={{ __html: content }}
     />
   ) : (
-    <Element className={clsx('duration-300 ease-in-out', className)}>
-      {children}
-    </Element>
+    <Element className={className}>{children}</Element>
   );
 };

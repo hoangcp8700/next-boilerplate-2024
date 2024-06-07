@@ -36,6 +36,13 @@
     align-items: center;
   }
 
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .reset-input {
     outline: none;
     appearance: none;

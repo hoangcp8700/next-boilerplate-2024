@@ -2,6 +2,8 @@
 
 import { useEffect } from 'react';
 
+import { Container, Heading } from '@/components';
+
 export default function Error({
   error,
   reset,
@@ -15,8 +17,8 @@ export default function Error({
   }, [error]);
 
   return (
-    <div>
-      <h2>Something went wrong!</h2>
+    <Container className="flex-center flex-col">
+      <Heading className="text-center">Something went wrong!</Heading>
       <button
         onClick={
           // Attempt to recover by trying to re-render the segment
@@ -25,6 +27,6 @@ export default function Error({
       >
         Try again
       </button>
-    </div>
+    </Container>
   );
 }

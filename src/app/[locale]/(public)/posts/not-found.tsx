@@ -1,14 +1,14 @@
 'use client';
 
-import { Link } from '@/components';
+import { Container, Heading, Link, Text } from '@/components';
 import { RouterName } from '@/shares/constants/router';
 
 export default function NotFound() {
   return (
-    <div>
-      <h2>Not Found This Post</h2>
-      <p>Could not find requested resource</p>
+    <Container className="flex-col-center">
+      <Heading>Not Found This Post</Heading>
+      <Text>Could not find requested resource</Text>
       <Link href={RouterName.posts}>Return Posts</Link>
-    </div>
+    </Container>
   );
 }

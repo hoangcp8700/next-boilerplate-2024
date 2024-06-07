@@ -39,6 +39,10 @@ body {
   color: rgb(var(--foreground-rgb));
 }
 
+p {
+  margin: 0 !important;
+}
+
 textarea::-webkit-scrollbar {
   display: none;
 }

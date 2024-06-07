@@ -82,3 +82,7 @@ export const AppConfigs = {
   metadata,
   viewport,
 };
+
+export const paginateInitialize = {
+  limit: 30,
+};

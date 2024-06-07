@@ -1,6 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
 import React from 'react';
 
 interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
@@ -20,12 +19,12 @@ export const Heading: React.FC<HeadingProps> = ({
 
   return content ? (
     <Element
-      className={clsx('duration-300 ease-in-out', className)}
+      className={className}
       dangerouslySetInnerHTML={{ __html: content }}
       {...props}
     />
   ) : (
-    <Element className={clsx('duration-300 ease-in-out', className)} {...props}>
+    <Element className={className} {...props}>
       {children}
     </Element>
   );

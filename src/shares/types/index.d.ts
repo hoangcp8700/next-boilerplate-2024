@@ -22,3 +22,10 @@ type SEOType = {
   type?: string;
   themeColor?: string;
 };
+
+type PaginationParamsType = {
+  page?: number;
+  size?: number;
+  search?: string;
+  limit?: number;
+};

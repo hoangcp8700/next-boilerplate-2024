@@ -1,5 +1,7 @@
 import { Env } from '@/shares/constants/env';
 
+import { urlRequest } from './helpers';
+
 // types
 export interface PostPaginateType {
   posts: PostType[];
@@ -19,11 +21,17 @@ export interface PostType {
 
 // services
 export const getPostDetail = async (id: string): Promise<PostType> => {
-  const response = await fetch(`${Env.NEXT_API_BASE_URL}/posts/${id}`);
+  const response = await fetch(
+    urlRequest(`${Env.NEXT_API_BASE_URL}/posts/${id}`),
+  );
   return response.json();
 };
 
-export const getPostList = async (): Promise<PostPaginateType> => {
-  const response = await fetch(`${Env.NEXT_API_BASE_URL}/posts/`);
+export const getPostList = async (
+  params?: PaginationParamsType,
+): Promise<PostPaginateType> => {
+  const response = await fetch(
+    urlRequest(`${Env.NEXT_API_BASE_URL}/posts`, params),
+  );
   return response.json();
 };

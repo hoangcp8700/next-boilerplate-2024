@@ -1,3 +1,4 @@
+import { Container } from '@/components';
 import { AppConfigs } from '@/shares/constants';
 
 const BaseTemplate = (props: {
@@ -6,14 +7,13 @@ const BaseTemplate = (props: {
   children: React.ReactNode;
 }) => {
   return (
-    <div className="w-full px-1 text-gray-700 antialiased">
-      <div className="mx-auto max-w-screen-md">
-        <header className="border-b border-gray-300">
-          <div className="pb-8 pt-16">
+    <div>
+      <header className="flex min-h-[80px] flex-col justify-center border-b border-gray-300">
+        <Container>
+          <div>
             <h1 className="text-3xl font-bold text-gray-900">
               {AppConfigs.name}
             </h1>
-            <h2 className="text-xl">TEST DESCRIPTION</h2>
           </div>
 
           <div className="flex justify-between">
@@ -25,12 +25,14 @@ const BaseTemplate = (props: {
               <ul className="flex flex-wrap gap-2 text-xl">{props.rightNav}</ul>
             </nav>
           </div>
-        </header>
+        </Container>
+      </header>
 
-        <main>{props.children}</main>
+      <main className="flex-col-center min-h-[82vh]">{props.children}</main>
 
-        <footer className="border-t border-gray-300 py-8 text-center text-sm">
-          © Copyright {new Date().getFullYear()} {AppConfigs.name}. Made With
+      <footer className="border-t border-gray-300 py-4 text-center text-sm">
+        <Container>
+          © Copyright {new Date().getFullYear()} {AppConfigs.name}. Made With{' '}
           <a
             href="https://creativedesignsguru.com"
             className="text-blue-700 hover:border-b-2 hover:border-blue-700"
@@ -44,8 +46,8 @@ const BaseTemplate = (props: {
            * The link doesn't need to appear on every pages, one link on one page is enough.
            * For example, in the `About` page. Thank you for your support, it'll mean a lot to me.
            */}
-        </footer>
-      </div>
+        </Container>
+      </footer>
     </div>
   );
 };

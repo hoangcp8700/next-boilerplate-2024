@@ -1,10 +1,10 @@
 type PageParamsType = {
   locale: string;
+  id: string;
 };
 
-type PageParamsModuleType<T> = {
+type PageParamsModuleType = {
   params: PageParamsType;
-  data?: T;
 };
 
 type ProviderType = {
@@ -21,4 +21,12 @@ type SEOType = {
   robots?: string;
   type?: string;
   themeColor?: string;
+};
+
+type PaginationParamsType = {
+  page?: number;
+  size?: number;
+  search?: string;
+  limit?: number;
+  skip?: number;
 };

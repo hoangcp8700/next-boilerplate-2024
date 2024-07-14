@@ -1,5 +1,4 @@
-import Link from '@/components/atoms/Link';
-import LocaleSwitcher from '@/components/organisms/LocaleSwitcher';
+import { Link, LocaleSwitcher } from '@/components';
 import { BaseTemplate } from '@/layouts/BaseLayout';
 import { useTranslations } from '@/libs/i18nNavigation';
 
@@ -20,7 +19,7 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/test/"
+              href="/test"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('about_link')}_test
@@ -28,7 +27,7 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/about/"
+              href="/about"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('about_link')}
@@ -36,7 +35,7 @@ export default function Layout(props: { children: React.ReactNode }) {
           </li>
           <li>
             <Link
-              href="/posts/"
+              href="/posts"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('posts_link')}
@@ -57,7 +56,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         <>
           <li>
             <Link
-              href="/sign-in/"
+              href="/sign-in"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('sign_in_link')}
@@ -66,7 +65,7 @@ export default function Layout(props: { children: React.ReactNode }) {
 
           <li>
             <Link
-              href="/sign-up/"
+              href="/sign-up"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('sign_up_link')}

@@ -1,7 +1,7 @@
 'use client';
 import { AppProgressBar } from 'next-nprogress-bar';
 
-const ProgressBar = () => (
+export const ProgressBar = () => (
   <AppProgressBar
     height="4px"
     color="#fafafa"
@@ -9,5 +9,3 @@ const ProgressBar = () => (
     shallowRouting
   />
 );
-
-export default ProgressBar;

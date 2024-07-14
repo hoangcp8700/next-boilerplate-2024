@@ -37,12 +37,10 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+}
+
+p {
+  margin: 0 !important;
 }
 
 textarea::-webkit-scrollbar {

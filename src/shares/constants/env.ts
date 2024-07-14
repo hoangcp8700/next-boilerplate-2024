@@ -1,3 +1,4 @@
 export const Env = {
-  NEXT_API_BASE_URL: process.env.NEXT_API_BASE_URL,
+  NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+  NEXT_PUBLIC_DOMAIN: process.env.NEXT_PUBLIC_DOMAIN,
 };

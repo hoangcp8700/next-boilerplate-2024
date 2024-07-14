@@ -30,8 +30,15 @@
     }
   }
 
-  .adjust-flex-center {
+  .flex-center {
     display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

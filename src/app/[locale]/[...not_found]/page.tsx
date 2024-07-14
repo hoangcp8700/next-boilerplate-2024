@@ -1,7 +1,8 @@
 'use client';
 
-import Link from '@/components/atoms/Link';
+import { Link } from '@/components';
 
+// This not found screen working when not found router
 export default function NotFound() {
   return (
     <div>

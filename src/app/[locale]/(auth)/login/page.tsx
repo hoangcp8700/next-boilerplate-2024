@@ -1,30 +1,25 @@
 import { useTranslations } from 'next-intl';
 import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 
-type PostDetailProps = {
-  params: { slug: string; locale: string };
-};
+import { Container } from '@/components';
 
-export default function PostDetail({
-  params: { locale, slug },
-}: PostDetailProps) {
+export default function Login({ params: { locale } }: PageParamsModuleType) {
   unstable_setRequestLocale(locale);
-  const t = useTranslations('pages.Post');
 
+  const t = useTranslations('pages.Login');
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <Container>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        {slug} -----
-        {t('meta_title')} detail
+        {t('meta_title')}
       </div>
-    </main>
+    </Container>
   );
 }
 
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
-    namespace: 'pages.Post',
+    namespace: 'pages.Login',
   });
 
   return {

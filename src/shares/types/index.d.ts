@@ -30,3 +30,8 @@ type PaginationParamsType = {
   limit?: number;
   skip?: number;
 };
+
+type SessionPayload = {
+  userId: string | number;
+  expiresAt: Date;
+};

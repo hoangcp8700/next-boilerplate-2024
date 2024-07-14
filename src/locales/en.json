@@ -24,6 +24,10 @@
     "Profile": {
       "meta_title": "About Profile",
       "meta_description": "About Profile Welcome to my portfolio page!"
+    },
+    "Login": {
+      "meta_title": "About Login",
+      "meta_description": "About Login Welcome to my portfolio page!"
     }
   },
   "common": {

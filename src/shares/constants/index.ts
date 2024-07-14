@@ -12,7 +12,8 @@ const defaultQueryOption = {
   staleTime: 60 * 1000,
 };
 
-const locales = ['en', 'vi'] as const;
+export const locales = ['en', 'vi'] as const;
+export const localePrefix = locales.map((el) => `/${el}`);
 export type Locale = (typeof locales)[number];
 
 const localeNames: Record<Locale, string> = {

@@ -24,6 +24,10 @@
     "Profile": {
       "meta_title": "[VN] About Profile",
       "meta_description": "[VN] About Profile Welcome to my portfolio page!"
+    },
+    "Login": {
+      "meta_title": "[VN] About Login",
+      "meta_description": "[VN] About Login Welcome to my portfolio page!"
     }
   },
   "common": {

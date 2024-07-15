@@ -1,5 +1,6 @@
 import { ProgressBar } from '../molecules';
 
+import { ChakraProvider } from './ChakraProvider';
 import { NextIntlProvider } from './NextIntlProvider';
 import { ReactQueryClientProvider } from './ReactQueryClientProvider';
 
@@ -9,7 +10,9 @@ export const MainProvider = ({ children, locale }: ProviderType) => {
     <>
       <ProgressBar />
       <NextIntlProvider locale={locale}>
-        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+        <ReactQueryClientProvider>
+          <ChakraProvider>{children}</ChakraProvider>
+        </ReactQueryClientProvider>
       </NextIntlProvider>
     </>
   );

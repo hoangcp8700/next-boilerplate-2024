@@ -1,10 +1,14 @@
-'use client';
+import {
+  Input as InputApp,
+  InputProps as InputAppProps,
+} from '@chakra-ui/react';
+import React, { forwardRef } from 'react';
 
-export interface InputProps {
-  children?: React.ReactNode;
-  label?: string;
-}
+export interface InputProps extends InputAppProps {}
 
-export const Input = ({ children }: InputProps) => (
-  <div>Component Input {children}</div>
-);
+const InputRef: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { type = 'text', ...props },
+  ref,
+) => <InputApp ref={ref} type={type} {...props} />;
+
+export const Input = forwardRef(InputRef);

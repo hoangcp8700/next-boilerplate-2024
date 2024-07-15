@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
 type FieldProps<T extends React.ElementType> = {
   component: T;
   name: string;
-  inputRef?: any;
-  directive?: boolean;
+  label?: string;
+  inputRef?: Ref<HTMLInputElement>;
 } & React.ComponentProps<T>;
 
 const Field = <T extends React.ElementType>({
   inputRef,
   component: Component,
   name,
+  label,
   onChange,
   ...props
 }: FieldProps<T>) => {
@@ -26,22 +27,25 @@ const Field = <T extends React.ElementType>({
         fieldState: { error },
       }) => {
         return (
-          <Component
-            {...props}
-            {...field}
-            ref={(input: React.ReactElement) => {
-              ref(input);
+          <>
+            {label && <span>{label}</span>}
+            <Component
+              {...props}
+              {...field}
+              ref={(input: React.ReactElement) => {
+                ref(input);
 
-              if (inputRef) {
-                inputRef.current = input;
-              }
-            }}
-            onChange={(evt: React.ChangeEvent) => {
-              onFieldControllerChange?.(evt);
-              onChange?.(evt);
-            }}
-            {...(error ? { error: !!error, helperText: error.message } : {})}
-          />
+                if (inputRef) {
+                  inputRef.current = input;
+                }
+              }}
+              onChange={(evt: React.ChangeEvent, ...rest: any) => {
+                onFieldControllerChange?.(evt);
+                onChange?.(evt, ...rest);
+              }}
+            />
+            {error && <p>{error.message}</p>}
+          </>
         );
       }}
     />

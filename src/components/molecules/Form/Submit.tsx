@@ -10,20 +10,41 @@ const SubmitButton = <T extends ElementType>({
   as = Button,
   children,
   loading,
+  disabled: buttonDisabled,
   ...props
 }: SubmitButtonProps<T>) => {
   const { control } = useFormContext();
-  const { isLoading, isSubmitting, isValidating } = useFormState({
+  const {
+    isLoading,
+    isSubmitting,
+    isValidating,
+    isDirty,
+    isValid,
+    isSubmitted,
+    disabled,
+  } = useFormState({
     control,
   });
   const loadingValue = [loading, isLoading, isSubmitting, isValidating].some(
     Boolean,
   );
 
+  const isDisabled =
+    disabled ||
+    isSubmitting ||
+    (!isDirty && !isValid && isSubmitted) ||
+    buttonDisabled;
+  const hasErrors = isDirty && !isValid && isSubmitted && !isSubmitting;
+
   const Component = as;
 
   return (
-    <Component loading={loadingValue} type="submit" {...props}>
+    <Component
+      isLoading={loadingValue}
+      isDisabled={isDisabled || hasErrors}
+      type="submit"
+      {...props}
+    >
       {children}
     </Component>
   );

@@ -2,15 +2,24 @@
 
 import * as yup from 'yup';
 
+import { useForm } from '@/shares/hooks/useForm';
 import { Input } from '@/components/atoms';
 
 import { Form } from '.';
 
+interface TypeProps {
+  test?: string;
+}
 const schema = yup.object().shape({
   test: yup.string().required(),
 });
 
 const Test = () => {
+  const { methods } = useForm<TypeProps>({
+    schema,
+    defaultValues: { test: '' },
+  });
+
   const onSubmit = async (data: any) => {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -20,12 +29,8 @@ const Test = () => {
   };
 
   return (
-    <Form
-      defaultValues={{ test: '' }}
-      onSubmit={onSubmit}
-      validationSchema={schema}
-    >
-      <Form.Field name="test" component={Input} label="First Name 2" />
+    <Form onSubmit={onSubmit} methods={methods}>
+      <Form.Field name="test" label="Test" component={Input} />
       <Form.SubmitButton>Submit</Form.SubmitButton>
     </Form>
   );

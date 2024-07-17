@@ -1,11 +1,9 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import Image from 'next/image';
 
 import { Container } from '@/components';
+import { getTranslations } from '@/i18n/i18nNavigation';
 
-export default function Home({ params: { locale } }: PageParamsModuleType) {
-  unstable_setRequestLocale(locale);
-
+export default function Home() {
   return (
     <Container>
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">

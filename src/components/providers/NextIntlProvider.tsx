@@ -1,11 +1,15 @@
-import { NextIntlClientProvider, useMessages } from 'next-intl';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { PropsWithChildren } from 'react';
 
-export const NextIntlProvider = ({ children, locale }: ProviderType) => {
-  const messages = useMessages();
+export default async function NextIntlProvider({
+  children,
+}: PropsWithChildren) {
+  const messages = await getMessages();
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
+    <NextIntlClientProvider messages={messages}>
       {children}
     </NextIntlClientProvider>
   );
-};
+}

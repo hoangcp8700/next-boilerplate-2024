@@ -1,4 +1,3 @@
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
 import {
   HydrationBoundary,
   QueryClient,
@@ -10,12 +9,9 @@ import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
 import { PostsView } from '@/modules/Posts';
 import { Env } from '@/shares/constants/env';
+import { getTranslations } from '@/i18n/i18nNavigation';
 
-export default async function Posts({
-  params: { locale },
-}: PageParamsModuleType) {
-  unstable_setRequestLocale(locale);
-
+export default async function Posts() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery({

@@ -1,12 +1,9 @@
 ---
 to: src/app/[locale]/(<%= structure %>)/<%= h.changeCase.kebabCase(name) %>/page.tsx
 ---
-import { useTranslations } from 'next-intl';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
+import { useTranslations, getTranslations } from '@/i18n/i18nNavigation';
 
-export default function <%= h.changeCase.pascalCase(name) %>({ params: { locale } }: PageParamsModuleType) {
-  unstable_setRequestLocale(locale);
-
+export default function <%= h.changeCase.pascalCase(name) %>() {
   const t = useTranslations('pages.<%= h.changeCase.pascalCase(name) %>');
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">

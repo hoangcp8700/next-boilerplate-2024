@@ -1,6 +1,6 @@
 'use client';
 
-import { LinkI18n, LinkI18nInterface } from '@/libs/i18nNavigation';
+import { LinkI18n, LinkI18nInterface } from '@/i18n/i18nNavigation';
 
 export interface LinkProps extends LinkI18nInterface {
   children: React.ReactNode;

@@ -1,10 +1,8 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import '@/shares/styles/index.css';
-import { notFound } from 'next/navigation';
-import { unstable_setRequestLocale } from 'next-intl/server';
 
-import { AppConfigs, Locale } from '@/shares/constants';
+import { AppConfigs } from '@/shares/constants';
 import { MainProvider } from '@/components';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -21,14 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { locale: string };
 }>) {
-  unstable_setRequestLocale(locale);
-
-  if (!AppConfigs.locales.includes(locale as Locale)) notFound();
-
   return (
     <html lang={locale}>
       <body className={inter.className}>
-        <MainProvider locale={locale}>{children}</MainProvider>
+        <MainProvider>{children}</MainProvider>
       </body>
     </html>
   );

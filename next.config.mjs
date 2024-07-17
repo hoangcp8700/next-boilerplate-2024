@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 import withNextIntl from 'next-intl/plugin';
 
-const withNextIntlConfig = withNextIntl('./src/libs/i18n.ts');
+const withNextIntlConfig = withNextIntl('./src/i18n');
 
 const nextConfig = withNextIntlConfig({
   compiler: {

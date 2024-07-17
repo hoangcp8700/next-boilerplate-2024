@@ -1,11 +1,7 @@
-import { useTranslations } from 'next-intl';
-import { getTranslations, unstable_setRequestLocale } from 'next-intl/server';
-
 import { Container } from '@/components';
+import { getTranslations, useTranslations } from '@/i18n/i18nNavigation';
 
-export default function About({ params: { locale } }: PageParamsModuleType) {
-  unstable_setRequestLocale(locale);
-
+export default function About() {
   const t = useTranslations('pages.About');
   return (
     <Container>

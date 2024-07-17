@@ -7,6 +7,11 @@ type PageParamsModuleType = {
   params: PageParamsType;
 };
 
+type PageType = {
+  children: ReactNode;
+  params: PageParamsType;
+};
+
 type ProviderType = {
   children: ReactNode;
   locale: string;

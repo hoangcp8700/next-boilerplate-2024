@@ -1,7 +1,11 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
+
 import { Container } from '@/components';
 import { getTranslations, useTranslations } from '@/i18n/i18nNavigation';
 
-export default function About() {
+export default function About({ params }: PageParamsModuleType) {
+  unstable_setRequestLocale(params.locale);
+
   const t = useTranslations('pages.About');
   return (
     <Container>

@@ -1,6 +1,6 @@
 import { getTranslations } from '@/i18n/i18nNavigation';
 import { Container } from '@/components';
-import LoginView from '@/views/Login';
+import LoginView from '@/modules/Login';
 
 export default function Login() {
   return (

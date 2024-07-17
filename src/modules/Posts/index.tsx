@@ -5,7 +5,7 @@ import React from 'react';
 import { RouterName } from '@/shares/constants/router';
 import { Container, Link, Message, Text } from '@/components';
 import ScrollInfiniteList from '@/components/organisms/ScrollInfiniteList';
-import { useMessages } from '@/shares/hooks';
+import { useMessages } from '@/i18n/hooks';
 
 import { useGetPostListApi } from './hooks/useGetPostListApi';
 

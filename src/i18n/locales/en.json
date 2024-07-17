@@ -17,6 +17,10 @@
       "meta_title": "Post TITLE",
       "meta_description": "Post TITLE Welcome to my portfolio page!"
     },
+    "User": {
+      "meta_title": "About User",
+      "meta_description": "About User Welcome to my portfolio page!"
+    },
     "About": {
       "meta_title": "About TITLE",
       "meta_description": "About TITLE Welcome to my portfolio page!"

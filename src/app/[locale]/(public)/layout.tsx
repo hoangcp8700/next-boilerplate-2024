@@ -1,8 +1,12 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
+
 import { useTranslations } from '@/i18n/i18nNavigation';
 import { Link, LocaleSwitcher } from '@/components';
 import { BaseTemplate } from '@/layouts/BaseLayout';
 
-export default function Layout(props: { children: React.ReactNode }) {
+export default function Layout({ params, children }: PageType) {
+  unstable_setRequestLocale(params?.locale);
+
   const t = useTranslations('navigate');
 
   return (
@@ -17,20 +21,21 @@ export default function Layout(props: { children: React.ReactNode }) {
               {t('home_link')}
             </Link>
           </li>
-          <li>
-            <Link
-              href="/test"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              {t('about_link')}_test
-            </Link>
-          </li>
+
           <li>
             <Link
               href="/about"
               className="border-none text-gray-700 hover:text-gray-900"
             >
               {t('about_link')}
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/users"
+              className="border-none text-gray-700 hover:text-gray-900"
+            >
+              User
             </Link>
           </li>
           <li>
@@ -69,7 +74,7 @@ export default function Layout(props: { children: React.ReactNode }) {
         </>
       }
     >
-      <div className="py-5 text-xl [&_p]:my-6">{props.children}</div>
+      <div className="py-5 text-xl [&_p]:my-6">{children}</div>
     </BaseTemplate>
   );
 }

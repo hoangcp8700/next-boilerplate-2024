@@ -1,7 +1,7 @@
 import { Container } from '@/components';
 import { AppConfigs } from '@/shares/constants';
 
-const BaseTemplate = (props: {
+const BaseLayout = (props: {
   leftNav: React.ReactNode;
   rightNav?: React.ReactNode;
   children: React.ReactNode;
@@ -52,4 +52,4 @@ const BaseTemplate = (props: {
   );
 };
 
-export { BaseTemplate };
+export { BaseLayout };

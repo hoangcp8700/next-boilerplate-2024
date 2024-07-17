@@ -12,11 +12,4 @@
   h2 {
     @apply text-lg font-bold xs:text-xl;
   }
-
-  [type='text'],
-  [type='email'],
-  [type='password'],
-  textarea {
-    @apply text-red-500;
-  }
 }

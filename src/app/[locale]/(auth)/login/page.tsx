@@ -5,9 +5,7 @@ import LoginView from '@/modules/Login';
 export default function Login() {
   return (
     <Container>
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <LoginView />
-      </div>
+      <LoginView />
     </Container>
   );
 }

@@ -9,6 +9,8 @@ export interface InputProps extends InputAppProps {}
 const InputRef: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { type = 'text', ...props },
   ref,
-) => <InputApp ref={ref} type={type} {...props} />;
+) => (
+  <InputApp ref={ref} type={type} focusBorderColor="transparent" {...props} />
+);
 
 export const Input = forwardRef(InputRef);

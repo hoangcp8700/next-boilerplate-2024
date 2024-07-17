@@ -2,18 +2,21 @@
 
 import React from 'react';
 import * as yup from 'yup';
+import { Icon, Stack } from '@chakra-ui/react';
+import { FaUserAlt } from 'react-icons/fa';
 
-import { Form, Input } from '@/components';
+import { Form, InputGroup, PasswordInput } from '@/components';
 import { useForm } from '@/shares/hooks/useForm';
+import { buildEmailRequired, buildStringRequired } from '@/shares/utils/yup';
 
 const schema = yup.object().shape({
-  userName: yup.string().required(),
+  email: buildEmailRequired('Email'),
+  password: buildStringRequired('Password'),
 });
 
 const LoginView = () => {
   const { methods } = useForm({
     schema,
-    defaultValues: { userName: '' },
   });
 
   const onSubmit = async (data: any) => {
@@ -25,14 +28,34 @@ const LoginView = () => {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <Form onSubmit={onSubmit} methods={methods}>
-          <Form.Field name="userName" label="UserName" component={Input} />
-          <Form.SubmitButton>Submit</Form.SubmitButton>
-        </Form>
-      </div>
-    </main>
+    <Form onSubmit={onSubmit} methods={methods}>
+      <Stack
+        maxW="768px"
+        spacing={4}
+        mx="auto"
+        p="1rem"
+        backgroundColor="whiteAlpha.900"
+        boxShadow="md"
+      >
+        <Form.Field
+          name="email"
+          type="email"
+          label="Email"
+          placeholder="Enter your email address"
+          component={InputGroup}
+          leftElement={{
+            children: <Icon as={FaUserAlt} color="gray.300" />,
+          }}
+        />
+        <Form.Field
+          name="password"
+          label="Password"
+          placeholder="Enter your password"
+          component={PasswordInput}
+        />
+        <Form.SubmitButton>Submit</Form.SubmitButton>
+      </Stack>
+    </Form>
   );
 };
 

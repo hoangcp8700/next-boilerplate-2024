@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { notFound } from 'next/navigation';
 
 import { Container, Loading } from '@/components';
-import { useGetUserByIdQuery } from '@/libs/redux/services/users';
+import { useGetUserByIdQuery } from '@/libs/redux';
 
 export function UserDetailView({ id }: { id: string }) {
   const t = useTranslations('pages.User');

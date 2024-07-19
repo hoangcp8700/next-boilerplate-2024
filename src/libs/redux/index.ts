@@ -1,7 +1,7 @@
 export * from 'react-redux';
 
-// export slices in here
-export * as counterActions from './features/counterSlices';
+export * from './features';
+export * from './services';
 
 // -----------------------------------------------------
 

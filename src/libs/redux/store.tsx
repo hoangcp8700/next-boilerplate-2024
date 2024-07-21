@@ -3,7 +3,7 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import counterReducer from './features/counterSlices';
-import { usersApi } from './services/users';
+import { usersApi } from './services';
 
 const rootReducer = combineReducers({
   counter: counterReducer,

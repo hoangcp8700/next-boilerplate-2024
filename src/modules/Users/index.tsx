@@ -5,13 +5,17 @@ import React from 'react';
 import { Link, Message, Text } from '@/components';
 import ScrollInfiniteList from '@/components/organisms/ScrollInfiniteList';
 import { useMessages } from '@/i18n/hooks';
-import { useGetUsersQuery } from '@/libs/redux/services/users';
 import { RouterName } from '@/shares/constants/router';
-import { counterActions, useDispatch, useSelector } from '@/libs/redux';
+import {
+  counterActions,
+  useDispatch,
+  useGetUsersQuery,
+  useSelector,
+} from '@/libs/redux';
 
 export function UsersView() {
   const messages = useMessages();
-  const { isLoading, isFetching, data } = useGetUsersQuery(null);
+  const { isLoading, isFetching, data } = useGetUsersQuery();
   const count = useSelector((state) => state.counter.value); // Access the counter state
   const dispatch = useDispatch();
 

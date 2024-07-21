@@ -17,7 +17,7 @@ const schema = yup.object().shape({
 const Test = () => {
   const { methods } = useForm<TypeProps>({
     schema,
-    defaultValues: { test: '' },
+    defaultValues: { test: '' }, // !IMPORTANT
   });
 
   const onSubmit = async (data: any) => {

@@ -118,3 +118,11 @@ export const REGEX = {
   password:
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*_-])[A-Za-z\d!@#$%^&*_-]{8,}$/,
 };
+
+export const sessionKeys = {
+  auth: 'auth',
+};
+
+export const cookieKeys = {
+  refreshToken: 'refresh-token',
+};

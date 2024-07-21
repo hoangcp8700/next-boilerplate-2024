@@ -1,12 +1,17 @@
+'use client';
+
 import { PropsWithChildren } from 'react';
 
 import { useTranslations } from '@/i18n/i18nNavigation';
 import { Link, LocaleSwitcher } from '@/components';
+import { RouterName } from '@/shares/constants/router';
+import useAuth from '@/shares/hooks/useAuth';
 
 import { BaseLayout } from './BaseLayout';
 
 export default function PublicLayout({ children }: PropsWithChildren) {
   const t = useTranslations('navigate');
+  const { isAuth } = useAuth();
 
   return (
     <BaseLayout
@@ -58,14 +63,25 @@ export default function PublicLayout({ children }: PropsWithChildren) {
       }
       rightNav={
         <>
-          <li>
-            <Link
-              href="/login"
-              className="border-none text-gray-700 hover:text-gray-900"
-            >
-              Login
-            </Link>
-          </li>
+          {isAuth ? (
+            <li>
+              <Link
+                href={RouterName.profile}
+                className="border-none text-gray-700 hover:text-gray-900"
+              >
+                {t('profile')}
+              </Link>
+            </li>
+          ) : (
+            <li>
+              <Link
+                href="/login"
+                className="border-none text-gray-700 hover:text-gray-900"
+              >
+                Login
+              </Link>
+            </li>
+          )}
 
           <li>
             <LocaleSwitcher />

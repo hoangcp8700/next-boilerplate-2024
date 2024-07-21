@@ -8,6 +8,7 @@ import { FaUserAlt } from 'react-icons/fa';
 import { Form, InputGroup, PasswordInput } from '@/components';
 import { useForm } from '@/shares/hooks/useForm';
 import { buildEmailRequired, buildStringRequired } from '@/shares/utils/yup';
+import useAuth from '@/shares/hooks/useAuth';
 
 const schema = yup.object().shape({
   email: buildEmailRequired('Email'),
@@ -15,16 +16,14 @@ const schema = yup.object().shape({
 });
 
 const LoginView = () => {
+  const { handleLogin } = useAuth();
   const { methods } = useForm({
     schema,
+    defaultValues: { email: '', password: '' },
   });
 
   const onSubmit = async (data: any) => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 5000);
-    });
+    await handleLogin(data);
   };
 
   return (

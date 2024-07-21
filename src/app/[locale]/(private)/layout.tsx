@@ -1,14 +1,14 @@
 import { unstable_setRequestLocale } from 'next-intl/server';
 
 import PublicLayout from '@/layouts/PublicLayout';
-import { PublicGuard } from '@/components/templates/PublicGuard';
+import { AuthGuard } from '@/components/templates/AuthGuard';
 
 export default function Layout({ params, children }: PageType) {
   unstable_setRequestLocale(params?.locale);
 
   return (
-    <PublicGuard>
+    <AuthGuard>
       <PublicLayout>{children}</PublicLayout>
-    </PublicGuard>
+    </AuthGuard>
   );
 }

@@ -1,1 +1,2 @@
-export * as counterActions from './counterSlices';
+export * as counterAction from './counterSlice';
+export * as authAction from './authSlice';

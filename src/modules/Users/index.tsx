@@ -7,7 +7,7 @@ import ScrollInfiniteList from '@/components/organisms/ScrollInfiniteList';
 import { useMessages } from '@/i18n/hooks';
 import { RouterName } from '@/shares/constants/router';
 import {
-  counterActions,
+  counterAction,
   useDispatch,
   useGetUsersQuery,
   useSelector,
@@ -23,16 +23,16 @@ export function UsersView() {
     <>
       <div>
         <h4 style={{ marginBottom: 16 }}>{count}</h4>
-        <button onClick={() => dispatch(counterActions.increment())}>
+        <button onClick={() => dispatch(counterAction.increment())}>
           increment
         </button>
         <button
-          onClick={() => dispatch(counterActions.decrement())}
+          onClick={() => dispatch(counterAction.decrement())}
           style={{ marginInline: 16 }}
         >
           decrement
         </button>
-        <button onClick={() => dispatch(counterActions.reset())}>reset</button>
+        <button onClick={() => dispatch(counterAction.reset())}>reset</button>
       </div>
 
       <ScrollInfiniteList

@@ -1,6 +1,5 @@
 'use client';
 
-import { setCookie, getCookie } from 'cookies-next';
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
@@ -11,14 +10,16 @@ import {
   useDispatch,
   useGetAuthQuery,
   useLoginMutation,
-  useRefreshMutation,
   useSelector,
 } from '@/libs/redux';
 import { LoginPayloads } from '@/libs/redux/services/auth/type';
-import { cookieKeys, sessionKeys } from '@/shares/constants';
-import { createSession, getSession } from '@/shares/utils/session';
 import { useRouter } from '@/i18n/i18nNavigation';
 import { RouterName } from '@/shares/constants/router';
+import {
+  getAccessToken,
+  setAccessToken,
+  setRefreshToken,
+} from '@/shares/utils/token';
 
 const delay = (time = 3000) =>
   new Promise((resolve, _) => {
@@ -40,12 +41,11 @@ const useAuth = () => {
     });
 
   const [_login, { isLoading: loginLoading }] = useLoginMutation();
-  const [refresh, { isLoading: refreshLoading }] = useRefreshMutation();
 
   const dispatch = useDispatch();
 
   const getAuth = async () => {
-    const accessToken = getSession(sessionKeys.auth);
+    const accessToken = getAccessToken();
     if (!accessToken) return;
 
     try {
@@ -70,8 +70,8 @@ const useAuth = () => {
 
   const handleAuthResponse = (response: AuthType) => {
     dispatch(authAction.setAuth(response.user));
-    createSession(sessionKeys.auth, response.accessToken);
-    setCookie(cookieKeys.refreshToken, response.refreshToken);
+    setAccessToken(response.accessToken);
+    setRefreshToken(response.refreshToken);
   };
 
   const handleLogin = async (payloads: LoginPayloads) => {
@@ -97,21 +97,6 @@ const useAuth = () => {
     }
   };
 
-  const handleRefresh = async () => {
-    const refreshToken = getCookie(cookieKeys.refreshToken);
-
-    if (refreshToken) {
-      try {
-        const refreshedResponse = await refresh({ refreshToken }).unwrap();
-
-        if (refreshedResponse) handleAuthResponse(refreshedResponse);
-      } catch (err) {
-        logger.error('Failed to refresh token:', err);
-        handleLogout();
-      }
-    }
-  };
-
   const handleLogout = () => {
     dispatch(authAction.logout());
     // TODO: redirect to login includes pathname back to next page
@@ -120,12 +105,8 @@ const useAuth = () => {
   const initialize = async () => {
     setIsChecking(true);
     try {
-      const accessToken = getSession(sessionKeys.auth);
+      const accessToken = getAccessToken();
       if (accessToken && user) return;
-
-      // NOTE: uncomment if use refresh token
-      // const refreshToken = getCookie(cookieKeys.refreshToken);
-      // if (refreshToken) return await handleRefresh();
 
       await getAuth();
     } catch (err) {
@@ -138,11 +119,9 @@ const useAuth = () => {
   return {
     user,
     isAuth: !!user,
-    isLoading:
-      refetchUserLoading || loginLoading || refreshLoading || isChecking,
+    isLoading: refetchUserLoading || loginLoading || isChecking,
     getAuth,
     handleLogin,
-    handleRefresh,
     initialize,
   };
 };

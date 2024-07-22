@@ -1,7 +1,8 @@
-export const isBrowser = (): boolean => typeof window !== 'undefined';
+import { isBrowser } from '.';
+
 export function getSession(name: string) {
   if (isBrowser()) {
-    return sessionStorage.getItem(name);
+    return window.sessionStorage.getItem(name);
   }
 }
 

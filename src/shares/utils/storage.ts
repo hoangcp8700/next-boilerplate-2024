@@ -1,15 +1,3 @@
-let accessToken = window.localStorage.getItem('token');
-let refreshToken = window.localStorage.getItem('refreshToken');
-
-/**
- * Listen for changes from other tabs
- */
-window.addEventListener('storage', (event) => {
-  if (event.key === 'token') {
-    accessToken = event.newValue;
-  }
-});
-// -------------------------------------
 export const setLocalStorage = (name: string, value: string) => {
   window.localStorage.setItem(name, value);
 };
@@ -22,21 +10,3 @@ export const removeLocalStorage = (name: string): void => {
 };
 
 export const clearLocalStorage = () => window.localStorage.clear();
-
-export const getAccessToken = (): string | null => accessToken;
-
-export const setAccessToken = (token: string): void => {
-  accessToken = token;
-  setLocalStorage('token', token);
-};
-export const getRefreshToken = (): string | null => refreshToken;
-
-export const setRefreshToken = (token: string): void => {
-  refreshToken = token;
-  setLocalStorage('refreshToken', token);
-};
-
-export const removeAccessToken = (): void => {
-  accessToken = null;
-  removeLocalStorage('token');
-};

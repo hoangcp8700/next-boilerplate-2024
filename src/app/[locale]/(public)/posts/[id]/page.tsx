@@ -3,6 +3,7 @@ import {
   QueryClient,
   dehydrate,
 } from '@tanstack/react-query';
+import { unstable_setRequestLocale } from 'next-intl/server';
 
 import * as api from '@/api';
 import { queryKeys } from '@/shares/constants/query-keys';
@@ -10,8 +11,10 @@ import { PostDetailView } from '@/modules/Posts/detail';
 import { getTranslations } from '@/i18n/i18nNavigation';
 
 export default async function PostDetail({
-  params: { id },
+  params: { id, locale },
 }: PageParamsModuleType) {
+  unstable_setRequestLocale(locale);
+
   const queryClient = new QueryClient();
 
   if (id) {

@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import { RTKProvider } from '@/libs/redux/provider';
 
 import { ProgressBar } from '../molecules';
@@ -11,13 +13,15 @@ export async function MainProvider({ children, locale }: ProviderType) {
   return (
     <>
       <ProgressBar />
-      <NextIntlProvider locale={locale}>
-        <RTKProvider>
-          <ReactQueryClientProvider>
-            <ChakraProvider>{children}</ChakraProvider>
-          </ReactQueryClientProvider>
-        </RTKProvider>
-      </NextIntlProvider>
+      <RTKProvider>
+        <Suspense>
+          <NextIntlProvider locale={locale}>
+            <ReactQueryClientProvider>
+              <ChakraProvider>{children}</ChakraProvider>
+            </ReactQueryClientProvider>
+          </NextIntlProvider>
+        </Suspense>
+      </RTKProvider>
     </>
   );
 }

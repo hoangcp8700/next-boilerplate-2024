@@ -1,8 +1,12 @@
+import { unstable_setRequestLocale } from 'next-intl/server';
+
 import { getTranslations } from '@/i18n/i18nNavigation';
 import { Container } from '@/components';
-import LoginView from '@/modules/Login';
+import LoginView from '@/modules/Authentication/Login';
 
-export default function Login() {
+export default function Login({ params }: PageParamsModuleType) {
+  unstable_setRequestLocale(params?.locale);
+
   return (
     <Container>
       <LoginView />

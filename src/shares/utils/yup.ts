@@ -59,6 +59,20 @@ export const buildStringRequiredAlphabetAndNumber = (
   );
 };
 
+export const buildStringMinMaxRequired = (
+  label: string,
+  min = 0,
+  max = 255,
+  option?: ValidateOptionType,
+) => {
+  return yup
+    .string()
+    .label(label)
+    .min(min, `${label} must be at least ${min} character`)
+    .max(max, `${label} must be at maximum ${max} character`)
+    .required(messageRequired(label, option));
+};
+
 export const buildStringMaxRequired = (
   label: string,
   max = 255,
@@ -203,4 +217,15 @@ export const buildConfirmEmail = (
   message: string,
 ) => {
   return buildEmailRequired(label).oneOf([yup.ref(key)], message);
+};
+
+export const buildPhoneRequire = (
+  label: string,
+  option?: ValidateOptionType,
+) => {
+  return buildStringRequired(label, option).test(
+    'not-phone',
+    "That doesn't look like Phone",
+    (value) => REGEX.phone.test(value?.toString()),
+  );
 };

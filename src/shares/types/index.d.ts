@@ -40,3 +40,9 @@ type SessionPayload = {
   userId: string | number;
   expiresAt: Date;
 };
+
+type ResponseRTK<T> = {
+  data?: T;
+  message?: string;
+  error?: string;
+};

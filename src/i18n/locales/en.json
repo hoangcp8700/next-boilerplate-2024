@@ -5,8 +5,8 @@
     "posts_link": "Posts",
     "guestbook_link": "Guestbook",
     "profile": "Profile",
-    "sign_in_link": "Sign in",
-    "sign_up_link": "Sign up"
+    "login": "Sign in",
+    "singUp": "Sign up"
   },
   "pages": {
     "Home": {
@@ -32,6 +32,10 @@
     "Login": {
       "meta_title": "About Login",
       "meta_description": "About Login Welcome to my portfolio page!"
+    },
+    "SignUp": {
+      "meta_title": "About SignUp",
+      "meta_description": "About SignUp Welcome to my portfolio page!"
     }
   },
   "common": {

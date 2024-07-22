@@ -5,8 +5,8 @@
     "posts_link": "[VN] Posts",
     "guestbook_link": "[VN] Guestbook",
     "profile": "[VN] Profile",
-    "sign_in_link": "[VN] Sign in",
-    "sign_up_link": "[VN] Sign up"
+    "login": "[VN] Sign in",
+    "singUp": "[VN] Sign up"
   },
   "pages": {
     "Home": {
@@ -32,6 +32,10 @@
     "Login": {
       "meta_title": "[VN] About Login",
       "meta_description": "[VN] About Login Welcome to my portfolio page!"
+    },
+    "SignUp": {
+      "meta_title": "[VN] About SignUp",
+      "meta_description": "[VN] About SignUp Welcome to my portfolio page!"
     }
   },
   "common": {

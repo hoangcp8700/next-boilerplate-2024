@@ -1,6 +1,12 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { provideTagDetail, provideTagList } from '../../helpers';
+import { Env } from '@/shares/constants/env';
+
+import {
+  customFetchBaseQuery,
+  provideTagDetail,
+  provideTagList,
+} from '../../helpers';
 
 import { UserRequest, UserStateType } from './type';
 
@@ -10,8 +16,8 @@ export const usersApi = createApi({
   reducerPath: 'usersApi',
   tagTypes: [tagType],
   refetchOnFocus: true,
-  baseQuery: fetchBaseQuery({
-    baseUrl: 'https://jsonplaceholder.typicode.com',
+  baseQuery: customFetchBaseQuery({
+    baseUrl: Env.NEXT_PUBLIC_API_BASE_URL,
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<UserStateType[], void>({

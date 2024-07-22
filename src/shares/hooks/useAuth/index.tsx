@@ -2,24 +2,28 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import { useToast } from '@chakra-ui/react';
 
 import { logger } from '@/libs/logger';
 import {
   authAction,
   AuthType,
+  LoginPayloads,
+  SignUpPayloads,
   useDispatch,
   useGetAuthQuery,
   useLoginMutation,
   useSelector,
+  useSingUpMutation,
 } from '@/libs/redux';
-import { LoginPayloads } from '@/libs/redux/services/auth/type';
-import { useRouter } from '@/i18n/i18nNavigation';
+import { usePathname, useRouter } from '@/i18n/i18nNavigation';
 import { RouterName } from '@/shares/constants/router';
 import {
   getAccessToken,
   setAccessToken,
   setRefreshToken,
 } from '@/shares/utils/token';
+import { ErrorResponse } from '@/libs/redux/types';
 
 const delay = (time = 3000) =>
   new Promise((resolve, _) => {
@@ -28,10 +32,13 @@ const delay = (time = 3000) =>
 
 const useAuth = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
   const searchParams = useSearchParams();
   const user = useSelector((state) => state.auth.user);
+  const toast = useToast();
 
-  const [isChecking, setIsChecking] = useState(true);
+  const [isChecking, setIsChecking] = useState(false);
 
   const redirectUrl = searchParams.get('redirect');
 
@@ -40,7 +47,9 @@ const useAuth = () => {
       skip: true,
     });
 
-  const [_login, { isLoading: loginLoading }] = useLoginMutation();
+  const [login, { isLoading: loginLoading }] = useLoginMutation();
+  const [signUp, { isLoading: signUpLoading, error: signUpError }] =
+    useSingUpMutation();
 
   const dispatch = useDispatch();
 
@@ -76,39 +85,85 @@ const useAuth = () => {
 
   const handleLogin = async (payloads: LoginPayloads) => {
     try {
-      // const response = await login(payloads).unwrap();
-      // if (response) handleAuthResponse(response);
+      const response = await login(payloads).unwrap();
+      if (response?.data) handleAuthResponse(response?.data);
 
-      // TODO: TEST
-      await delay(5000);
-      handleAuthResponse({
-        accessToken: '123',
-        refreshToken: '123',
-        user: {
-          id: '1',
-          email: payloads.email,
-          name: 'Hoang',
-        },
+      toast({
+        description: 'Welcome to ABC',
+        status: 'success',
+        duration: 5000,
+        isClosable: true,
       });
 
       router.push(redirectUrl || RouterName.profile);
     } catch (err) {
-      logger.error('Failed to login:', err);
+      toast({
+        description: (err as Error)?.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleSignUp = async (payloads: SignUpPayloads) => {
+    try {
+      const response = await signUp(payloads);
+
+      if (response?.error) {
+        const errorResponse = (response?.error as ErrorResponse)?.errors;
+
+        return toast({
+          title: response?.error?.message,
+          ...(errorResponse && {
+            description: (
+              <div>
+                {Object.values(errorResponse).map((el: any, idx) => (
+                  <p key={`message-${idx}`}>{el.message}</p>
+                ))}
+              </div>
+            ),
+          }),
+          status: 'error',
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+
+      toast({
+        title: 'Sign up successfully',
+        status: 'success',
+        duration: 9000,
+        isClosable: true,
+      });
+      router.push(RouterName.login);
+    } catch (error) {
+      toast({
+        description: (error as Error)?.message,
+        status: 'error',
+        duration: 5000,
+        isClosable: true,
+      });
     }
   };
 
   const handleLogout = () => {
     dispatch(authAction.logout());
-    // TODO: redirect to login includes pathname back to next page
+    router.push('/');
   };
 
-  const initialize = async () => {
-    setIsChecking(true);
+  const initialize = async (isPrivateRouter?: boolean) => {
     try {
+      if (user) return setIsChecking(false);
       const accessToken = getAccessToken();
-      if (accessToken && user) return;
 
-      await getAuth();
+      if (isPrivateRouter && !accessToken && !user) {
+        return router.push(`${RouterName.login}?redirect=${pathname}`);
+      }
+      if (accessToken) {
+        setIsChecking(true);
+        await getAuth();
+      }
     } catch (err) {
       logger.error('Failed to initialize auth:', err);
     } finally {
@@ -119,10 +174,14 @@ const useAuth = () => {
   return {
     user,
     isAuth: !!user,
-    isLoading: refetchUserLoading || loginLoading || isChecking,
+    isLoading:
+      refetchUserLoading || loginLoading || signUpLoading || isChecking,
+    signUpError,
     getAuth,
     handleLogin,
+    handleSignUp,
     initialize,
+    handleLogout,
   };
 };
 

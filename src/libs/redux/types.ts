@@ -2,6 +2,8 @@ export interface CustomFetchBaseQueryArgs {
   baseUrl?: string;
 }
 
-export interface ErrorResponse {
-  errors: any;
-}
+export type ErrorResponse = {
+  errors?: any;
+  status?: number | string;
+  message?: string;
+};

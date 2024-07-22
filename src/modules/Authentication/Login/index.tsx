@@ -7,11 +7,11 @@ import { FaUserAlt } from 'react-icons/fa';
 
 import { Form, InputGroup, PasswordInput } from '@/components';
 import { useForm } from '@/shares/hooks/useForm';
-import { buildEmailRequired, buildStringRequired } from '@/shares/utils/yup';
+import { buildStringRequired } from '@/shares/utils/yup';
 import useAuth from '@/shares/hooks/useAuth';
 
 const schema = yup.object().shape({
-  email: buildEmailRequired('Email'),
+  userName: buildStringRequired('UserName'),
   password: buildStringRequired('Password'),
 });
 
@@ -19,7 +19,7 @@ const LoginView = () => {
   const { handleLogin } = useAuth();
   const { methods } = useForm({
     schema,
-    defaultValues: { email: '', password: '' },
+    defaultValues: { userName: '', password: '' },
   });
 
   const onSubmit = async (data: any) => {
@@ -37,10 +37,9 @@ const LoginView = () => {
         boxShadow="md"
       >
         <Form.Field
-          name="email"
-          type="email"
-          label="Email"
-          placeholder="Enter your email address"
+          name="userName"
+          label="UserName"
+          placeholder="Enter your username"
           component={InputGroup}
           leftElement={{
             children: <Icon as={FaUserAlt} color="gray.300" />,

@@ -3,7 +3,7 @@
 import { PropsWithChildren } from 'react';
 
 import { useTranslations } from '@/i18n/i18nNavigation';
-import { Link, LocaleSwitcher } from '@/components';
+import { Button, Link, LocaleSwitcher } from '@/components';
 import { RouterName } from '@/shares/constants/router';
 import useAuth from '@/shares/hooks/useAuth';
 
@@ -11,7 +11,7 @@ import { BaseLayout } from './BaseLayout';
 
 export default function PublicLayout({ children }: PropsWithChildren) {
   const t = useTranslations('navigate');
-  const { isAuth } = useAuth();
+  const { isAuth, handleLogout } = useAuth();
 
   return (
     <BaseLayout
@@ -64,23 +64,38 @@ export default function PublicLayout({ children }: PropsWithChildren) {
       rightNav={
         <>
           {isAuth ? (
-            <li>
-              <Link
-                href={RouterName.profile}
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                {t('profile')}
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  href={RouterName.profile}
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {t('profile')}
+                </Link>
+              </li>
+              <li>
+                <Button onClick={handleLogout}>Logout</Button>
+              </li>
+            </>
           ) : (
-            <li>
-              <Link
-                href="/login"
-                className="border-none text-gray-700 hover:text-gray-900"
-              >
-                Login
-              </Link>
-            </li>
+            <>
+              <li>
+                <Link
+                  href={RouterName.login}
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {t('login')}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={RouterName.signUp}
+                  className="border-none text-gray-700 hover:text-gray-900"
+                >
+                  {t('singUp')}
+                </Link>
+              </li>
+            </>
           )}
 
           <li>

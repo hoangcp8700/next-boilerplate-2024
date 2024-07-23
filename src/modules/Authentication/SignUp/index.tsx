@@ -6,7 +6,6 @@ import { Icon, Stack } from '@chakra-ui/react';
 import { FaMailBulk, FaPhone, FaUserAlt } from 'react-icons/fa';
 
 import { Form, InputGroup, PasswordInput } from '@/components';
-import { useForm } from '@/shares/hooks/useForm';
 import {
   buildConfirmRef,
   buildEmailRequired,
@@ -30,7 +29,7 @@ const schema = yup.object().shape({
   ),
 });
 
-const initialize = {
+const defaultValues = {
   email: '',
   userName: '',
   password: '',
@@ -39,10 +38,6 @@ const initialize = {
 
 const SignUpView = () => {
   const { handleSignUp } = useAuth();
-  const { methods } = useForm({
-    schema,
-    defaultValues: initialize,
-  });
 
   const onSubmit = async (data: SignUpPayloads) => {
     try {
@@ -53,7 +48,7 @@ const SignUpView = () => {
   };
 
   return (
-    <Form onSubmit={onSubmit} methods={methods}>
+    <Form onSubmit={onSubmit} defaultValues={defaultValues} schema={schema}>
       <Stack
         maxW="768px"
         spacing={4}

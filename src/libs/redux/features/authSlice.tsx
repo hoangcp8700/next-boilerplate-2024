@@ -18,8 +18,8 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    setAuth: (state, action: PayloadAction<UserStateType>) => {
-      state.user = action.payload;
+    setAuth: (state, action: PayloadAction<UserStateType | undefined>) => {
+      state.user = action?.payload;
     },
     logout: (state) => {
       state.user = undefined;

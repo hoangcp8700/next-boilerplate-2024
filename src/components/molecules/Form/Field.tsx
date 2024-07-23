@@ -1,6 +1,7 @@
-import { FormControl, FormErrorMessage, FormLabel } from '@chakra-ui/react';
+import { FormControl, FormLabel } from '@chakra-ui/react';
 import React, { Ref } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
+import { ErrorMessage as FormErrorMessage } from '@hookform/error-message';
 
 type FieldProps<T extends React.ElementType> = {
   component: T;
@@ -21,7 +22,8 @@ const Field = <T extends React.ElementType>({
   onChange,
   ...props
 }: FieldProps<T>) => {
-  const { control } = useFormContext();
+  const { control, formState } = useFormContext();
+  const { errors } = formState;
 
   return (
     <Controller
@@ -29,14 +31,13 @@ const Field = <T extends React.ElementType>({
       control={control}
       render={({
         field: { ref, onChange: onFieldControllerChange, ...field },
-        fieldState: { error },
       }) => {
         return (
           <>
             <FormControl
               isReadOnly={isReadOnly}
               isRequired={isRequired}
-              isInvalid={!!error}
+              isInvalid={!!errors[name]}
             >
               {label && <FormLabel>{label}</FormLabel>}
               <Component
@@ -54,7 +55,14 @@ const Field = <T extends React.ElementType>({
                   onChange?.(evt, ...rest);
                 }}
               />
-              {error && <FormErrorMessage>{error.message}</FormErrorMessage>}
+
+              <FormErrorMessage
+                name={name}
+                errors={errors}
+                render={({ message }) => {
+                  return <p className="text-sm text-red-500">{message}</p>;
+                }}
+              />
             </FormControl>
           </>
         );

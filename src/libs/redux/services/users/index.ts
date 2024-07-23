@@ -21,22 +21,26 @@ export const usersApi = createApi({
   }),
   endpoints: (builder) => ({
     getUsers: builder.query<UserStateType[], void>({
-      query: () => '/users',
+      query: () => ({
+        url: '/users',
+        credentials: 'include', // to tell RTK Query to send the cookies along with the request.
+      }),
       providesTags: (result) => provideTagList(tagType, result),
     }),
     getUserById: builder.query<UserStateType, { id: string }>({
       query: ({ id }) => `/users/${id}`,
       providesTags: (result, error, arg) => provideTagDetail(tagType, arg.id),
     }),
-    addUser: builder.mutation<void, UserRequest>({
+    createUser: builder.mutation<void, UserRequest>({
       query: (newUser) => ({
-        url: '/users',
+        url: '/users/create',
         method: 'POST',
         body: newUser,
+        credentials: 'include',
       }),
       invalidatesTags: provideTagDetail(tagType, 'List'),
     }),
-    editUser: builder.mutation<
+    updateUser: builder.mutation<
       UserStateType,
       Partial<UserStateType> & Pick<UserStateType, 'id'>
     >({
@@ -44,11 +48,31 @@ export const usersApi = createApi({
         url: `/users/${body.id}`,
         method: 'POST',
         body,
+        credentials: 'include',
       }),
       invalidatesTags: (result, error, arg) =>
         provideTagDetail(tagType, arg.id),
     }),
+
+    deleteUser: builder.mutation<
+      UserStateType,
+      Partial<UserStateType> & Pick<UserStateType, 'id'>
+    >({
+      query: (body) => ({
+        url: `/users/${body.id}`,
+        method: 'DELETE',
+        body,
+        credentials: 'include',
+      }),
+      invalidatesTags: provideTagDetail(tagType, 'List'),
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useGetUserByIdQuery } = usersApi;
+export const {
+  useGetUsersQuery,
+  useGetUserByIdQuery,
+  useCreateUserMutation,
+  useDeleteUserMutation,
+  useUpdateUserMutation,
+} = usersApi;

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useToast } from '@chakra-ui/react';
+import { useSearchParams } from 'next/navigation';
 
 import { logger } from '@/libs/logger';
 import {
@@ -15,8 +16,8 @@ import {
   useSelector,
   useSingUpMutation,
 } from '@/libs/redux';
-import { useRouter } from '@/i18n/i18nNavigation';
-import { RouterName } from '@/shares/constants/router';
+import { usePathname, useRouter } from '@/i18n/i18nNavigation';
+import { privateRouter, RouterName } from '@/shares/constants/router';
 import {
   getAccessToken,
   setAccessToken,
@@ -25,6 +26,7 @@ import {
 import { ErrorResponse } from '@/libs/redux/types';
 import { UserStateType } from '@/libs/redux/services/users/type';
 import { AppRoles } from '@/shares/constants/enum';
+import { getPathnameWithoutLocale } from '@/i18n/helper';
 
 const delay = (time = 3000) =>
   new Promise((resolve, _) => {
@@ -32,6 +34,10 @@ const delay = (time = 3000) =>
   });
 
 const useAuth = () => {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const redirectUrl = searchParams.get('redirect');
+
   const router = useRouter();
 
   const user = useSelector((state) => state.auth.user);
@@ -95,7 +101,7 @@ const useAuth = () => {
         status: 'success',
         isClosable: true,
       });
-      await initialize();
+      router.push(redirectUrl || RouterName.home);
     } catch (err) {
       toast({
         description: (err as Error)?.message,
@@ -146,10 +152,16 @@ const useAuth = () => {
 
   const handleLogout = () => {
     dispatch(authAction.logout());
+    const pathnameWithoutLocale = getPathnameWithoutLocale(pathname);
+    if (privateRouter.includes(pathnameWithoutLocale)) {
+      router.push(RouterName.home);
+    }
   };
 
   const initialize = async () => {
     try {
+      const accessToken = getAccessToken();
+      if (accessToken && user) return setIsChecking(false);
       setIsChecking(true);
       await getAuth();
     } catch (err) {

@@ -7,6 +7,7 @@ import {
   setAccessToken,
   setRefreshToken,
 } from '@/shares/utils/token';
+import { logger } from '@/libs/logger';
 
 import { AuthType } from '../services';
 import { CustomFetchBaseQueryArgs, ErrorResponse } from '../types';
@@ -53,18 +54,18 @@ export const customFetchBaseQuery = (
       'Content-Type': 'application/json; charset=utf-8',
     });
 
-    const token = getAccessToken();
-    if (token) {
-      headers.set('Authorization', `Bearer ${token}`);
-    }
-
-    const config: RequestInit = {
-      method,
-      headers,
-      body: body ? JSON.stringify(body) : undefined,
-    };
-
     try {
+      const token = getAccessToken();
+      if (token) {
+        headers.set('Authorization', `Bearer ${token}`);
+      }
+
+      const config: RequestInit = {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined,
+      };
+
       let response = await fetch(`${baseUrl}${url}`, config);
 
       // Handle unauthorized response
@@ -113,6 +114,7 @@ export const customFetchBaseQuery = (
       const data = await response.json();
       return { data };
     } catch (error) {
+      logger.error('🚀 ~ return ~ error:', error);
       return {
         error: {
           status: 'FETCH_ERROR',

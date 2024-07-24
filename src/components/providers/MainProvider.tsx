@@ -3,7 +3,7 @@ import { Suspense } from 'react';
 import { RTKProvider } from '@/libs/redux/provider';
 
 import { ProgressBar } from '../molecules';
-import ProtectedRoutes from '../templates/ProtectedGuard';
+import ProtectedRoute from '../templates/ProtectedRoute';
 
 import { ChakraProvider } from './ChakraProvider';
 import NextIntlProvider from './NextIntlProvider';
@@ -19,7 +19,7 @@ export async function MainProvider({ children, locale }: ProviderType) {
           <NextIntlProvider locale={locale}>
             <ReactQueryClientProvider>
               <ChakraProvider>
-                <ProtectedRoutes>{children}</ProtectedRoutes>
+                <ProtectedRoute>{children}</ProtectedRoute>
               </ChakraProvider>
             </ReactQueryClientProvider>
           </NextIntlProvider>

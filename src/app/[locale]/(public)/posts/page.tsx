@@ -10,21 +10,34 @@ import { queryKeys } from '@/shares/constants/query-keys';
 import { PostsView } from '@/modules/Posts';
 import { Env } from '@/shares/constants/env';
 import { getTranslations } from '@/i18n/i18nNavigation';
+import { paginateInitialize } from '@/shares/constants';
 
-export default async function Posts() {
+async function prefetchData() {
   const queryClient = new QueryClient();
 
-  await queryClient.prefetchQuery({
+  // Pre-fetch the first page of posts
+  await queryClient.prefetchInfiniteQuery({
     queryKey: [queryKeys.posts],
-    queryFn: () => api.getPostList(),
+    queryFn: async () =>
+      api.getPostList({
+        skip: 0,
+        limit: paginateInitialize.limit,
+      }),
+    initialPageParam: 0,
   });
+
+  return dehydrate(queryClient);
+}
+
+export default async function Posts() {
+  const dehydrateState = await prefetchData();
 
   return (
     // Neat! Serialization is now as easy as passing props.
     // HydrationBoundary is a Client Component, so hydration will happen there.
-    <HydrationBoundary state={dehydrate(queryClient)}>
+    <HydrationBoundary state={dehydrateState}>
       {/* NOTE: Wrapper Suspense components because use router client */}
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <PostsView />
       </Suspense>
     </HydrationBoundary>

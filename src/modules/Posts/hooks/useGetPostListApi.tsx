@@ -2,23 +2,24 @@ import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo } from 'react';
 
 import * as api from '@/api';
-import { filterEmptyKeys, queryKeys } from '@/shares/constants/query-keys';
+import { queryKeys } from '@/shares/constants/query-keys';
 import { paginateInitialize } from '@/shares/constants';
+import { logger } from '@/libs/logger';
+import useHasChanged from '@/shares/hooks/useHasChanged';
 
 export const useGetPostListApi = () => {
   const queryClient = useQueryClient();
 
   // NEXT DATA WITH SKIP field
   const { data, isFetching, fetchNextPage } = useInfiniteQuery({
-    queryKey: filterEmptyKeys([queryKeys.posts]),
-    queryFn: (params) => {
-      return api.getPostList({
-        skip: params.pageParam,
+    queryKey: [queryKeys.posts],
+    queryFn: (params) =>
+      api.getPostList({
+        skip: params.pageParam || 0,
         limit: paginateInitialize.limit,
-      });
-    },
+      }),
     initialPageParam: 0,
-    getNextPageParam: (lastPageParams, _pages) => {
+    getNextPageParam: (lastPageParams) => {
       return lastPageParams?.limit < lastPageParams.total
         ? lastPageParams.limit + lastPageParams.skip
         : undefined;
@@ -44,34 +45,57 @@ export const useGetPostListApi = () => {
   }, [data?.pages]);
 
   // // prefetch next page
-  const onLoadMore = () => {
-    if (!lastPageParams || !isHasMore) return;
-    fetchNextPage();
+  const onLoadMore = async () => {
+    try {
+      if (!lastPageParams || isFetching) return;
+      await fetchNextPage();
+    } catch (error) {
+      logger.error('Error during onLoadMore:', error);
+    }
   };
 
   const prefetchNextList = async () => {
-    if (!lastPageParams) return;
+    if (!data?.pages || !lastPageParams) return;
 
-    // The results of this query will be cached like a normal query
-    await queryClient.prefetchInfiniteQuery({
-      queryKey: filterEmptyKeys([queryKeys.posts]),
-      queryFn: () => {
-        return api.getPostList({
-          skip: lastPageParams?.skip + paginateInitialize.limit,
-          limit: paginateInitialize.limit,
-        });
-      },
-      initialPageParam: lastPageParams?.skip,
-    });
+    try {
+      const newSkipParams = lastPageParams?.skip + paginateInitialize.limit;
+
+      // The results of this query will be cached like a normal query
+      await queryClient.prefetchInfiniteQuery({
+        queryKey: [queryKeys.posts],
+        queryFn: () =>
+          api.getPostList({
+            skip: newSkipParams,
+            limit: paginateInitialize.limit,
+          }),
+        initialPageParam: newSkipParams,
+        getNextPageParam: (nLastPageParams: any) => {
+          return nLastPageParams?.limit < nLastPageParams.total
+            ? nLastPageParams.limit + nLastPageParams.skip
+            : undefined;
+        },
+      });
+
+      // Check the cache after prefetching
+      // const cachedData = queryClient.getQueryData([queryKeys.posts]);
+      // logger.info('Cached data after prefetch:', cachedData);
+    } catch (error) {
+      logger.error('Error during prefetch:', error);
+    }
   };
 
   // // prefetch next page
+  const lastPageParamsChanged = useHasChanged([lastPageParams?.skip]);
   useEffect(() => {
-    if (isHasMore && lastPageParams) {
+    if (lastPageParamsChanged && data && isHasMore && lastPageParams) {
       prefetchNextList();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isHasMore, lastPageParams]);
+  }, [isHasMore, lastPageParams, data, lastPageParamsChanged]);
 
-  return { data: formatDataList, isLoading: isFetching, onLoadMore };
+  return {
+    data: formatDataList,
+    isLoading: isFetching,
+    onLoadMore,
+  };
 };

@@ -1,5 +1,3 @@
-'use client';
-
 import { logger } from '@/libs/logger';
 import { queryString } from '@/shares/utils';
 

@@ -8,23 +8,21 @@ const config = {
     autoprefixer: {},
     ...(process.env.NODE_ENV === 'production'
       ? {
-          cssnano: {},
-          'postcss-flexbugs-fixes': {},
-          'postcss-preset-env': {
-            autoprefixer: {
-              flexbox: 'no-2009',
-            },
-            stage: 3,
-            features: {
-              'custom-properties': false,
-            },
+          cssnano: {
+            preset: [
+              'default',
+              {
+                discardComments: {
+                  removeAll: true,
+                },
+                calc: false,
+              },
+            ],
           },
-          //  reduce the file size is to remove any unrequired styles from the final CSS file.
-          '@fullhuman/postcss-purgecss': {
-            content: ['./src/**/*.{js,jsx,ts,tsx}'],
-            defaultExtractor: (content) =>
-              content.match(/[\w-/:]+(?<!:)/g) || [],
-            safelist: ['html', 'body'],
+          'postcss-preset-env': {
+            stage: 3,
+            preserve: false,
+            features: {},
           },
         }
       : {}),

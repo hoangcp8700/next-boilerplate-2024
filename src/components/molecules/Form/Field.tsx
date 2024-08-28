@@ -52,7 +52,11 @@ const Field = <T extends React.ElementType>({
                 }}
                 onChange={(evt: React.ChangeEvent, ...rest: any) => {
                   onFieldControllerChange?.(evt);
-                  onChange?.(evt, ...rest);
+                  if (rest.length > 0) {
+                    onChange?.(evt, ...rest);
+                  } else {
+                    onChange?.(evt);
+                  }
                 }}
               />
 

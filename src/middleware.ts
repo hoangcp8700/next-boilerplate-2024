@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { intlMiddleware } from './shares/middlewares';
-import {
-  privateRouter,
-  routeConfig,
-  RouterName,
-} from './shares/constants/router';
+import { authRouter } from './shares/constants/router';
 import { cookieKeys } from './shares/constants';
 import { getPathnameWithoutLocale } from './i18n/helper';
 
@@ -19,17 +15,8 @@ export function middleware(req: NextRequest) {
   const pathnameWithoutLocale = getPathnameWithoutLocale(pathname);
   const redirectUrl = searchParams.get('redirect');
 
-  // If the route is protected and there is no accessToken, redirect to the login page
-  if (privateRouter.includes(pathnameWithoutLocale) && !accessToken) {
-    const loginUrl = new URL(
-      `${RouterName.login}?redirect=${pathnameWithoutLocale}`,
-      req.url,
-    );
-    return NextResponse.redirect(loginUrl);
-  }
-
   // authenticated and access auth page
-  if (accessToken && routeConfig.auth.routes.includes(pathnameWithoutLocale)) {
+  if (accessToken && authRouter.includes(pathnameWithoutLocale)) {
     const homeUrl = new URL(redirectUrl || '/', req.url);
     return NextResponse.redirect(homeUrl);
   }

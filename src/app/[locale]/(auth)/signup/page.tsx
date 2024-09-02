@@ -17,7 +17,7 @@ export default function SignUp({ params }: PageParamsModuleType) {
 export async function generateMetadata(props: { params: { locale: string } }) {
   const t = await getTranslations({
     locale: props.params.locale,
-    namespace: 'pages.Login',
+    namespace: 'pages.SignUp',
   });
 
   return {

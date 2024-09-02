@@ -25,7 +25,6 @@ import {
 } from '@/shares/utils/token';
 import { ErrorResponse } from '@/libs/redux/types';
 import { UserStateType } from '@/libs/redux/services/users/type';
-import { AppRoles } from '@/shares/constants/enum';
 import { getPathnameWithoutLocale } from '@/i18n/helper';
 
 const delay = (time = 3000) =>
@@ -33,6 +32,11 @@ const delay = (time = 3000) =>
     setTimeout(resolve, time);
   });
 
+const dummyUser = {
+  id: '1',
+  email: 'test@gmail.com',
+  name: 'Hoang',
+};
 const useAuth = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -50,7 +54,7 @@ const useAuth = () => {
       skip: true,
     });
 
-  const [login, { isLoading: loginLoading }] = useLoginMutation();
+  const [_login, { isLoading: loginLoading }] = useLoginMutation();
   const [signUp, { isLoading: signUpLoading, error: signUpError }] =
     useSingUpMutation();
 
@@ -76,12 +80,10 @@ const useAuth = () => {
           id: '1',
           email: 'test@gmail.com',
           name: 'Hoang',
-          role: AppRoles.User,
         }),
       );
     } catch (err) {
       logger.error('Failed to fetch user:', err);
-      handleLogout();
     }
   };
 
@@ -91,11 +93,16 @@ const useAuth = () => {
     setRefreshToken(response.refreshToken);
   };
 
-  const handleLogin = async (payloads: LoginPayloads) => {
+  const handleLogin = async (_payloads: LoginPayloads) => {
     try {
-      const response = await login(payloads).unwrap();
-      if (response?.data) handleAuthResponse(response?.data);
-
+      // const response = await login(payloads).unwrap();
+      // if (response?.data) handleAuthResponse(response?.data);
+      await delay(5000);
+      handleAuthResponse({
+        accessToken: '123',
+        refreshToken: '1222',
+        user: dummyUser,
+      });
       toast({
         description: 'Welcome to ABC',
         status: 'success',

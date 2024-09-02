@@ -1,5 +1,5 @@
-import PublicLayout from '@/layouts/PublicLayout';
+import PrivateLayout from '@/layouts/PrivateLayout';
 
 export default function Layout({ children }: PageType) {
-  return <PublicLayout>{children}</PublicLayout>;
+  return <PrivateLayout>{children}</PrivateLayout>;
 }

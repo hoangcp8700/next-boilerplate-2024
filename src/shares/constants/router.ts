@@ -1,7 +1,13 @@
 export const RouterName = {
   '404': '/404',
   comingSoon: '/coming-soon',
+
+  // without data
   home: '/',
+  about: '/about',
+  blogs: '/blogs',
+
+  // with data
   posts: '/posts',
   users: '/users',
   login: '/login',

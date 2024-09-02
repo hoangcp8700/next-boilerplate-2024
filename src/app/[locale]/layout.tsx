@@ -5,7 +5,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { MainProvider } from '@/components';
 import { AppConfigs } from '@/shares/constants';
 
-import '@/shares/styles/index.css';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 

@@ -1,9 +1,0 @@
-@layer components {
-  .btn-blue {
-    @apply rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700;
-  }
-  /* // nav-link, post-link..., ne nego:
-  // link 	Component
-  // link-primary 	Utility
-  // link-neutral    Utility */
-}

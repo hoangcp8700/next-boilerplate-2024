@@ -1,0 +1,139 @@
+@import 'normalize.css';
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+}
+
+/* // ------------------------------------------// */
+@tailwind base;
+@layer base {
+  body {
+    @apply dark:bg-gray-500 dark:text-white;
+  }
+
+  p,
+  a,
+  span {
+    @apply text-base;
+  }
+
+  h2 {
+    @apply text-lg font-bold xs:text-xl;
+  }
+
+  p {
+    margin: 0 !important;
+  }
+
+  textarea::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@tailwind components;
+@layer components {
+  .btn-blue {
+    @apply rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700;
+  }
+  /* // nav-link, post-link..., ne nego:
+  // link 	Component
+  // link-primary 	Utility
+  // link-neutral    Utility */
+}
+
+@tailwind utilities;
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
+
+  .link-neutral {
+    &:link,
+    &:visited,
+    &:hover,
+    &:active {
+      @apply text-inherit no-underline;
+    }
+  }
+
+  .link-primary {
+    &:link {
+      @apply text-blue-600;
+    }
+    &:visited {
+      @apply text-purple-600;
+    }
+    &:hover {
+      @apply cursor-pointer text-blue-800;
+    }
+    &:active {
+      @apply text-red-600;
+    }
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flex-col-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .reset-input {
+    outline: none;
+    appearance: none;
+  }
+
+  .svg-white {
+    filter: brightness(0) invert(1);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}

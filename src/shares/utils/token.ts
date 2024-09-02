@@ -1,32 +1,37 @@
-import {
-  setCookie,
-  getCookie,
-  deleteCookie,
-  CookieValueTypes,
-} from 'cookies-next';
+'use server';
+import { cookies } from 'next/headers';
 
 import { cookieKeys } from '../constants';
 
-export const getAccessToken = () =>
-  getCookie(cookieKeys.accessToken)?.toString();
+export const getCookie = (keyValue: string) => {
+  const cookieStore = cookies();
+  return cookieStore.get(keyValue)?.toString();
+};
+
+export const getAccessToken = () => getCookie(cookieKeys.accessToken);
 
 export const setAccessToken = (token: string): void => {
   const expirationTime = new Date(new Date().getTime() + 1 * 60 * 60 * 1000);
 
-  setCookie(cookieKeys.accessToken, token, {
+  cookies().set({
+    name: cookieKeys.accessToken,
+    value: token,
     expires: expirationTime,
   });
 };
 // --------------------------
-export const getRefreshToken = (): CookieValueTypes | null => {
+export const getRefreshToken = () => {
   return getCookie(cookieKeys.refreshToken);
 };
 
 export const setRefreshToken = (token: string): void => {
-  setCookie(cookieKeys.refreshToken, token);
+  cookies().set({
+    name: cookieKeys.refreshToken,
+    value: token,
+  });
 };
 
 export const removeAccessToken = (): void => {
-  deleteCookie(cookieKeys.accessToken);
-  deleteCookie(cookieKeys.refreshToken);
+  cookies().delete(cookieKeys.accessToken);
+  cookies().delete(cookieKeys.refreshToken);
 };

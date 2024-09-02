@@ -2,8 +2,6 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { removeAccessToken } from '@/shares/utils/token';
-
 import { UserStateType } from '../services/users/type';
 
 type AuthState = {
@@ -23,7 +21,6 @@ export const authSlice = createSlice({
     },
     logout: (state) => {
       state.user = undefined;
-      removeAccessToken();
     },
   },
 });

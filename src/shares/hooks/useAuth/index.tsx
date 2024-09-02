@@ -20,6 +20,7 @@ import { usePathname, useRouter } from '@/i18n/i18nNavigation';
 import { privateRouter, RouterName } from '@/shares/constants/router';
 import {
   getAccessToken,
+  removeAccessToken,
   setAccessToken,
   setRefreshToken,
 } from '@/shares/utils/token';
@@ -163,6 +164,7 @@ const useAuth = () => {
     if (privateRouter.includes(pathnameWithoutLocale)) {
       router.push(RouterName.home);
     }
+    removeAccessToken();
   };
 
   const initialize = async () => {

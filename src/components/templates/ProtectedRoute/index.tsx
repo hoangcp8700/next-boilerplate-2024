@@ -2,7 +2,7 @@
 
 import { PropsWithChildren, useEffect } from 'react';
 
-import { Spinner } from '@/components/atoms';
+import { Loading } from '@/components/atoms';
 import useAuth from '@/shares/hooks/useAuth';
 
 const ProtectedRoute = ({ children }: PropsWithChildren) => {
@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }: PropsWithChildren) => {
   }, []);
 
   if (authLoading) {
-    return <Spinner />;
+    return <Loading />;
   }
   return children;
 };

@@ -5,7 +5,7 @@ import React from 'react';
 import { Link, Message, Text } from '@/components';
 import ScrollInfiniteList from '@/components/organisms/ScrollInfiniteList';
 import { useMessages } from '@/i18n/hooks';
-import { RouterName } from '@/shares/constants/router';
+import { RouterName } from '@/shares/constants';
 import {
   counterAction,
   useDispatch,

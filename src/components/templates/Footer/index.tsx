@@ -1,6 +1,6 @@
 'use client';
 
-import { Container } from '@/components/atoms';
+import { Container } from '@/components/common';
 import { AppConfigs } from '@/shares/constants';
 
 export const Footer = () => (

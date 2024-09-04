@@ -2,9 +2,8 @@ import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import { unstable_setRequestLocale } from 'next-intl/server';
 
-import { MainProvider } from '@/components';
 import { AppConfigs } from '@/shares/constants';
-
+import { MainProvider } from '@/shares/providers';
 import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });

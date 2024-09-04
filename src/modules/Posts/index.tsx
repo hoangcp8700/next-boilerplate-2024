@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { RouterName } from '@/shares/constants/router';
+import { RouterName } from '@/shares/constants';
 import { Container, Link, Message, Text } from '@/components';
 import ScrollInfiniteList from '@/components/organisms/ScrollInfiniteList';
 import { useMessages } from '@/i18n/hooks';

@@ -1,10 +1,10 @@
 'use client';
 
-import { Button, Container, Link, Spinner } from '@/components/atoms';
+import { Button, Link, Spinner } from '@/components/atoms';
+import { Container } from '@/components/common';
 import { LocaleSwitcher } from '@/components/organisms';
 import { useTranslations } from '@/i18n/i18nNavigation';
-import { AppConfigs } from '@/shares/constants';
-import { RouterName } from '@/shares/constants/router';
+import { AppConfigs, RouterName } from '@/shares/constants';
 
 export interface HeaderProps {
   children?: React.ReactNode;

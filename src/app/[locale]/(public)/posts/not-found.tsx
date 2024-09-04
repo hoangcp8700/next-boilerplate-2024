@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Heading, Link, Text } from '@/components';
-import { RouterName } from '@/shares/constants/router';
+import { RouterName } from '@/shares/constants';
 
 export default function NotFound() {
   return (

@@ -17,7 +17,7 @@ import {
   useSingUpMutation,
 } from '@/libs/redux';
 import { usePathname, useRouter } from '@/i18n/i18nNavigation';
-import { privateRouter, RouterName } from '@/shares/constants/router';
+import { privateRouter, RouterName } from '@/shares/constants';
 import {
   getAccessToken,
   removeAccessToken,

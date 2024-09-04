@@ -5,7 +5,7 @@ import { PropsWithChildren, useEffect } from 'react';
 import { Loading } from '@/components/atoms';
 import useAuth from '@/shares/hooks/useAuth';
 
-const ProtectedRoute = ({ children }: PropsWithChildren) => {
+export const ProtectedRoute = ({ children }: PropsWithChildren) => {
   const { isLoading: authLoading, initialize } = useAuth();
 
   useEffect(() => {
@@ -18,5 +18,3 @@ const ProtectedRoute = ({ children }: PropsWithChildren) => {
   }
   return children;
 };
-
-export default ProtectedRoute;

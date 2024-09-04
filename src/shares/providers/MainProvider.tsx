@@ -1,8 +1,7 @@
 import { Suspense } from 'react';
 
 import { RTKProvider } from '@/libs/redux/provider';
-
-import ProtectedRoute from '../templates/ProtectedRoute';
+import { ProtectedRoute } from '@/components';
 
 import { ChakraProvider } from './ChakraProvider';
 import NextIntlProvider from './NextIntlProvider';

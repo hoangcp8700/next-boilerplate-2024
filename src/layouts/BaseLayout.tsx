@@ -1,5 +1,4 @@
-import { Footer, Header } from '@/components';
-import { HeaderProps } from '@/components/templates/Header';
+import { Footer, Header, HeaderProps } from '@/components';
 
 interface BaseLayoutProps extends HeaderProps {}
 const BaseLayout = ({ children, ...headerProps }: BaseLayoutProps) => {

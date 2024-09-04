@@ -5,7 +5,6 @@ export { Input } from './Input';
 export { PasswordInput } from './Input/PasswordInput';
 export { InputGroup } from './Input/InputGroup';
 export { Link } from './Link';
-export { Container } from './Container';
 export { Message } from './Message';
 export { Text } from './Text';
 export { Heading } from './Heading';

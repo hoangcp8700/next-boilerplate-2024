@@ -12,6 +12,7 @@ import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { logger } from '@/libs/logger';
+import useWarnIfUnsavedChanges from '@/shares/hooks/useWarnIfUnsavedChanges';
 
 export interface FormProps<T extends FieldValues>
   extends Pick<UseFormProps<T>, 'mode'> {
@@ -50,6 +51,8 @@ const FormProvider = forwardRef<HTMLFormElement, FormProps<any>>(
       defaultValues,
       ...props,
     });
+
+    useWarnIfUnsavedChanges(methods.formState.isDirty);
 
     useEffect(() => {
       // Don't reset if dirty

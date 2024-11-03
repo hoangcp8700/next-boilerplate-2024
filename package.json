@@ -11,7 +11,7 @@
     "prettier": "prettier --write */**/*.{js,jsx,json,ts,tsx,scss,css,md}",
     "create:components": "npx hygen components new",
     "create:pages": "npx hygen pages new",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@chakra-ui/next-js": "^2.2.0",

@@ -36,6 +36,7 @@ const useWarnIfUnsavedChanges = (isDirty: boolean) => {
         anchor.removeEventListener('click', handleAnchorClick),
       );
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

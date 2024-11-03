@@ -5,8 +5,7 @@ import { useTranslations } from 'next-intl';
 import { notFound } from 'next/navigation';
 
 import { Container, Loading } from '@/components';
-
-import { useGetPostDetailApi } from './hooks/useGetPostDetailApi';
+import { useGetPostDetailApi } from '@/api/posts/hooks/useGetPostDetailApi';
 
 export function PostDetailView({ id }: { id: string }) {
   const t = useTranslations('pages.Post');

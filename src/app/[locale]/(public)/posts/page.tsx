@@ -11,25 +11,35 @@ import { PostsView } from '@/modules/Posts';
 import { Env } from '@/shares/constants/env';
 import { getTranslations } from '@/i18n/i18nNavigation';
 import { paginateInitialize } from '@/shares/constants';
+import { logger } from '@/libs/logger';
 
-async function prefetchData() {
+async function prefetchData(page = 0) {
   const queryClient = new QueryClient();
 
-  // Pre-fetch the first page of posts
   await queryClient.prefetchInfiniteQuery({
     queryKey: [queryKeys.posts],
-    queryFn: async () =>
+    queryFn: (params) =>
       api.getPostList({
-        skip: 0,
+        skip: params.pageParam || 0,
         limit: paginateInitialize.limit,
       }),
-    initialPageParam: 0,
+    initialPageParam: page,
+    getNextPageParam: (lastPageParams: api.PostPaginateType) => {
+      return lastPageParams?.skip < lastPageParams.total
+        ? lastPageParams.skip + lastPageParams.limit
+        : undefined;
+    },
   });
 
   return dehydrate(queryClient);
 }
 
-export default async function Posts() {
+export default async function Posts({ searchParams }: any) {
+  // const dehydrateState = await prefetchData();
+
+  const page = Number(searchParams.skip) || 0; // Get the page from URL parameters
+  logger.info('🚀 ~ Posts ~ searchParams:', searchParams, page);
+  // TODO: prefetch incorrect
   const dehydrateState = await prefetchData();
 
   return (

@@ -1,4 +1,6 @@
-import { urlRequest } from './helpers';
+'use server';
+
+import { urlRequest } from '../helpers';
 
 // types
 export interface PostPaginateType {

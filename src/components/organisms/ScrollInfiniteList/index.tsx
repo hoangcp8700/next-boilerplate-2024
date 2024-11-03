@@ -29,14 +29,14 @@ const ScrollInfiniteList: React.FC<ScrollInfiniteListProps> = ({
       {(loading && loadingComponent) || null}
 
       {loading && !loadingComponent && (
-        <div className="flex-center w-full">
+        <div className="flex-center h-40 w-full">
           <Loading />
         </div>
       )}
       {!loading && noItem && noItem()}
 
       {children && !loading && onLoadMore && (
-        <div ref={(suggest) => setNode(suggest)} />
+        <div className="h-40 bg-red-500" ref={(suggest) => setNode(suggest)} />
       )}
     </div>
   );
